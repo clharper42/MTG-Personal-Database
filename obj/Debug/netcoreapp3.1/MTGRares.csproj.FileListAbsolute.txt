@@ -1,0 +1,38 @@
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.exe
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.deps.json
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.runtimeconfig.json
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.runtimeconfig.dev.json
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.dll
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.pdb
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.csprojAssemblyReference.cache
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.AssemblyInfoInputs.cache
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.AssemblyInfo.cs
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.csproj.CoreCompileInputs.cache
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.csproj.CopyComplete
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.dll
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.pdb
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.genruntimeconfig.cache
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\Chris Harper\Desktop\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\Json.Net.dll
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.exe
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.deps.json
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.runtimeconfig.json
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.runtimeconfig.dev.json
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.dll
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\MTGRares.pdb
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\Json.Net.dll
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\Documents\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.csprojAssemblyReference.cache
+D:\Documents\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.AssemblyInfoInputs.cache
+D:\Documents\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.AssemblyInfo.cs
+D:\Documents\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.csproj.CoreCompileInputs.cache
+D:\Documents\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.csproj.CopyComplete
+D:\Documents\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.dll
+D:\Documents\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.pdb
+D:\Documents\C#Projects\MTGRares\obj\Debug\netcoreapp3.1\MTGRares.genruntimeconfig.cache
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\LumenWorks.Framework.IO.dll
+D:\Documents\C#Projects\MTGRares\bin\Debug\netcoreapp3.1\CsvHelper.dll
