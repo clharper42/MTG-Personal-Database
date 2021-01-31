@@ -317,6 +317,7 @@ namespace MTGRares {
                             }
                             else if(Convert.ToInt32(selection) == 2)
                             {
+                                Console.Clear();
                                 Console.WriteLine("Enter ID:");
                                 CardSearchByIndex(Convert.ToInt32(Console.ReadLine()));
 
@@ -387,7 +388,7 @@ namespace MTGRares {
                 else if(choice == 3)
                 {
                     Console.Clear();
-                    Console.WriteLine("Enter text(Cards Filterd By Color Idenity):");
+                    Console.WriteLine("Enter Text(Cards Filterd By Color Idenity):");
                     CardsByText(Console.ReadLine());   
                 }
             }
