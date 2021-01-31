@@ -8,3 +8,5 @@ Once the program has processed the cards it uses the information gathered to mak
 With the infromation gathered from Scryfall the program provides features such as searching and filtering (features are being worked on).
 
 Once the program has gathered information from Scryfall the program updates a csv file with the cards' information for which it will pull from and update when the program is ran again.
+
+[Example of features as of first commit](https://streamable.com/60due7)
