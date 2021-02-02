@@ -7,6 +7,11 @@ namespace MTGRares {
             public static List<Card> Allcards {get; set;}
             public static List<string> Colorids {get; private set;}
             public static List<List<Card>> SepedCardsByColorId {get; private set;}
+
+            public static List<string> Types {get; private set;}
+            public static List<string> Subtypes {get; private set;}
+            public static List<List<Card>> SepedCardsByType {get; private set;}
+            public static List<List<Card>> SepedCardsBySubtype {get; private set;}
             public static void CardSearch(string cardname, bool isexact) {
                 Console.Clear();
                 bool found = false;
@@ -147,6 +152,102 @@ namespace MTGRares {
                     Console.ReadLine(); 
                 }
 
+            }
+
+            public static void SepByTypeLine()
+            {
+                Types = new List<string>();
+                Subtypes = new List<string>();
+
+                SepedCardsByType = new List<List<Card>>();
+                SepedCardsBySubtype = new List<List<Card>>();
+
+                foreach(Card card in Allcards)
+                {
+                    if(card.Card_faces != null)
+                    {
+                        foreach(Cardface cardface in card.Card_faces)
+                        {
+                            if(cardface.Type_line.Contains('—'))
+                            {
+                                if(!Types.Contains(cardface.Type_line.Substring(0,cardface.Type_line.IndexOf('—') - 1)))
+                                {
+                                    Types.Add(cardface.Type_line.Substring(0,cardface.Type_line.IndexOf('—') - 1));
+                                    SepedCardsByType.Add(new List<Card>());
+                                    SepedCardsByType[SepedCardsByType.Count - 1].Add(card);
+                                }
+                                else
+                                {
+                                    SepedCardsByType[Types.IndexOf(cardface.Type_line.Substring(0,cardface.Type_line.IndexOf('—') - 1))].Add(card);
+                                }
+
+                                if(!Subtypes.Contains(cardface.Type_line.Substring(cardface.Type_line.IndexOf('—') + 2, cardface.Type_line.Length - (cardface.Type_line.IndexOf('—') + 2))))
+                                {
+                                    Subtypes.Add(cardface.Type_line.Substring(cardface.Type_line.IndexOf('—') + 2, cardface.Type_line.Length - (cardface.Type_line.IndexOf('—') + 2)));
+                                    SepedCardsBySubtype.Add(new List<Card>());
+                                    SepedCardsBySubtype[SepedCardsBySubtype.Count - 1].Add(card);
+                                }
+                                else
+                                {
+                                    SepedCardsBySubtype[Subtypes.IndexOf(cardface.Type_line.Substring(cardface.Type_line.IndexOf('—') + 2, cardface.Type_line.Length - (cardface.Type_line.IndexOf('—') + 2)))].Add(card);
+                                }                                
+                            }
+                            else
+                            {
+                                if(!Types.Contains(cardface.Type_line))
+                                {
+                                    Types.Add(cardface.Type_line);
+                                    SepedCardsByType.Add(new List<Card>());
+                                    SepedCardsByType[SepedCardsByType.Count - 1].Add(card);
+                                }
+                                else
+                                {
+                                    SepedCardsByType[Types.IndexOf(cardface.Type_line)].Add(card);
+                                }                                 
+                            }
+                        }
+                    }
+                    else
+                    {
+                            if(card.Type_line.Contains('—'))
+                            {
+                                if(!Types.Contains(card.Type_line.Substring(0,card.Type_line.IndexOf('—') - 1)))
+                                {
+                                    Types.Add(card.Type_line.Substring(0,card.Type_line.IndexOf('—') - 1));
+                                    SepedCardsByType.Add(new List<Card>());
+                                    SepedCardsByType[SepedCardsByType.Count - 1].Add(card);
+                                }
+                                else
+                                {
+                                    SepedCardsByType[Types.IndexOf(card.Type_line.Substring(0,card.Type_line.IndexOf('—') - 1))].Add(card);
+                                }
+
+                                if(!Subtypes.Contains(card.Type_line.Substring(card.Type_line.IndexOf('—') + 2, card.Type_line.Length - (card.Type_line.IndexOf('—') + 2))))
+                                {
+                                    Subtypes.Add(card.Type_line.Substring(card.Type_line.IndexOf('—') + 2, card.Type_line.Length - (card.Type_line.IndexOf('—') + 2)));
+                                    SepedCardsBySubtype.Add(new List<Card>());
+                                    SepedCardsBySubtype[SepedCardsBySubtype.Count - 1].Add(card);
+                                }
+                                else
+                                {
+                                    SepedCardsBySubtype[Subtypes.IndexOf(card.Type_line.Substring(card.Type_line.IndexOf('—') + 2, card.Type_line.Length - (card.Type_line.IndexOf('—') + 2)))].Add(card);
+                                }                                
+                            }
+                            else
+                            {
+                                if(!Types.Contains(card.Type_line))
+                                {
+                                    Types.Add(card.Type_line);
+                                    SepedCardsByType.Add(new List<Card>());
+                                    SepedCardsByType[SepedCardsByType.Count - 1].Add(card);
+                                }
+                                else
+                                {
+                                    SepedCardsByType[Types.IndexOf(card.Type_line)].Add(card);
+                                }                                 
+                            }                        
+                    }
+                }
             }
 
             public static void CardsByColor(string colors, bool containsonly)
