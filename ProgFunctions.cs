@@ -155,7 +155,7 @@ namespace MTGRares {
 
             }
 
-            public static void SepByTypeLine()
+            private static void SepByTypeLine()
             {
                 Types = new List<List<String>>(); // color - type
                 Subtypes = new List<List<String>>();
@@ -261,8 +261,67 @@ namespace MTGRares {
                         }
                     }
                 }
+            }
 
-                Console.WriteLine("Here");
+            public static void DisplayByType()
+            {
+                if(Types is null)
+                {
+                    SepByTypeLine();
+                }
+
+                Console.Clear();
+                for(int i = 0; i < SepedCardsByType.Count; i++)
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("--" + " " + Colorids[i]);
+
+                    for(int j = 0; j < SepedCardsByType[i].Count; j++)
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine("-" + " " + Types[i][j]);
+                        Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+                        foreach(Card card in SepedCardsByType[i][j])
+                        {
+                          Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));
+                        }
+                    }
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");                
+            }
+
+            public static void DisplayBySubtype()
+            {
+                if(Subtypes is null)
+                {
+                    SepByTypeLine();
+                }
+
+                Console.Clear();
+                for(int i = 0; i < SepedCardsBySubtype.Count; i++)
+                {
+                    if(SepedCardsBySubtype[i].Count != 0)
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine(" ");
+                        Console.WriteLine("--" + " " + Colorids[i]);
+
+                        for(int j = 0; j < SepedCardsBySubtype[i].Count; j++)
+                        {
+                            Console.WriteLine(" ");
+                            Console.WriteLine("-" + " " + Subtypes[i][j]);
+                            Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+                            foreach(Card card in SepedCardsBySubtype[i][j])
+                            {
+                                Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                            
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");
             }
 
             public static void CardsByColor(string colors, bool containsonly)
