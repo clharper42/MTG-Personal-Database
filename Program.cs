@@ -136,7 +136,7 @@ namespace MTGRares
  
             ProgFunctions.Allcards = allcards;
      
-            //Work on interactions. Search by card color other than idenity. separate by type line, break down subtypes (add print function)? Search by id displays more information about card
+            //Work on interactions. Search by card color other than idenity. Add way to get to typeline search/breakdown. Search by id displays more information about card
             Console.WriteLine("Database loaded");
             Console.WriteLine("-----");
 

@@ -395,10 +395,12 @@ namespace MTGRares {
             public static void CardsByText(string expr)
             {
                 bool match = false;
+                bool printed = false;
                 if(Colorids is null){
                     SepByColorId(false);
                 }
 
+                Console.Clear();
                 for(int i = 0; i < SepedCardsByColorId.Count; i++)
                 {
                     foreach(Card card in SepedCardsByColorId[i])
@@ -412,10 +414,11 @@ namespace MTGRares {
                                 {
                                     if(!match)
                                     {
-                                         Console.WriteLine(" ");
+                                        Console.WriteLine(" ");
                                         Console.WriteLine(" - " + Colorids[i]);
                                         Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
                                         match = true;
+                                        printed = true;
                                     }
                                     Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));
                                     Console.WriteLine(card.Oracle_text);
@@ -436,6 +439,7 @@ namespace MTGRares {
                                         Console.WriteLine(" - " + Colorids[i]);
                                         Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
                                         match = true;
+                                        printed = true;
                                     }                                    
                                     Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));
                                     Console.WriteLine(cardface.Oracle_text);
@@ -447,9 +451,224 @@ namespace MTGRares {
                     }
                     match = false;
                 }
+
+                if(!printed)
+                {
+                    Console.WriteLine("No Cards In Search");
+                }
+
+
                 Console.WriteLine(" ");
                 Console.WriteLine("Enter Any Key To Exit:");
                 Console.ReadLine(); 
+            }
+
+            public static void CardsByType(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
+            {
+                if(SepedCardsByType is null)
+                {
+                    SepByTypeLine();
+                }
+
+                Console.Clear();
+
+                bool printed = false;
+                for(int i = 0; i < SepedCardsByType.Count; i++) //color
+                {
+                    bool correctcolor = true;
+                    bool correcttype = true;
+                    bool consolecolor = true;
+                    if(usecolors)
+                    {
+                        if(colorsexact)
+                        {
+                            if(colors.Length == Colorids[i].Length)
+                            {
+                                foreach(char color in colors)
+                                {
+                                    if(!Colorids[i].Contains(char.ToUpper(color)))
+                                    {
+                                        correctcolor = false;
+                                        break;
+                                    }
+                                }                               
+                            }
+                            else
+                            {
+                                correctcolor = false;
+                            }
+                        }
+                        else
+                        {
+                            correctcolor = false;
+                            foreach(char color in colors)
+                            {
+                                if(Colorids[i].Contains(char.ToUpper(color)))
+                                {
+                                    correctcolor = true;
+                                    break;
+                                }
+                            }
+                        }                            
+                    }
+
+                    if(correctcolor)
+                    {
+                        consolecolor = true;
+
+                        for(int j = 0; j < SepedCardsByType[i].Count; j++) //type
+                        {
+                            correcttype = false;
+                            if(exprexact)
+                            {
+                                if(Types[i][j].ToLower().Equals(expr.ToLower()))
+                                {
+                                    correcttype = true;
+                                }
+                            }
+                            else
+                            {
+                                if(Regex.IsMatch(Types[i][j].ToLower(),expr.ToLower()))
+                                {
+                                    correcttype = true;
+                                }
+                            }
+
+                            if(correcttype)
+                            {
+                                if(consolecolor)
+                                {
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine("--" + " " + Colorids[i]);
+                                    consolecolor = false;
+                                    printed = true;
+                                }
+
+                                Console.WriteLine(" ");
+                                Console.WriteLine("-" + " " + Types[i][j]);
+                                Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+
+                                foreach(Card card in SepedCardsByType[i][j])
+                                {
+                                    Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                          
+                                }                                
+                            }
+                        }
+                    }
+                }
+
+                if(!printed)
+                {
+                    Console.WriteLine("No Cards In Search");
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();                 
+            }
+
+            public static void CardsBySubtype(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
+            {
+                if(SepedCardsBySubtype is null)
+                {
+                    SepByTypeLine();
+                }
+
+                Console.Clear();
+
+                bool printed = false;
+                for(int i = 0; i < SepedCardsBySubtype.Count; i++) //color
+                {
+                    bool correctcolor = true;
+                    bool correcttype = true;
+                    bool consolecolor = true;
+                    if(usecolors)
+                    {
+                        if(colorsexact)
+                        {
+                            if(colors.Length == Colorids[i].Length)
+                            {
+                                foreach(char color in colors)
+                                {
+                                    if(!Colorids[i].Contains(char.ToUpper(color)))
+                                    {
+                                        correctcolor = false;
+                                        break;
+                                    }
+                                }                               
+                            }
+                            else
+                            {
+                                correctcolor = false;
+                            }
+                        }
+                        else
+                        {
+                            correctcolor = false;
+                            foreach(char color in colors)
+                            {
+                                if(Colorids[i].Contains(char.ToUpper(color)))
+                                {
+                                    correctcolor = true;
+                                    break;
+                                }
+                            }
+                        }                            
+                    }
+
+                    if(correctcolor)
+                    {
+                        consolecolor = true;
+
+                        for(int j = 0; j < SepedCardsBySubtype[i].Count; j++) //type
+                        {
+                            correcttype = false;
+                            if(exprexact)
+                            {
+                                if(Subtypes[i][j].ToLower().Equals(expr.ToLower()))
+                                {
+                                    correcttype = true;
+                                }
+                            }
+                            else
+                            {
+                                if(Regex.IsMatch(Subtypes[i][j].ToLower(),expr.ToLower()))
+                                {
+                                    correcttype = true;
+                                }
+                            }
+
+                            if(correcttype)
+                            {
+                                if(consolecolor)
+                                {
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine("--" + " " + Colorids[i]);
+                                    consolecolor = false;
+                                    printed = true;
+                                }
+
+                                Console.WriteLine(" ");
+                                Console.WriteLine("-" + " " + Subtypes[i][j]);
+                                Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+
+                                foreach(Card card in SepedCardsBySubtype[i][j])
+                                {
+                                    Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                          
+                                }                                
+                            }
+                        }
+                    }
+                }
+
+                if(!printed)
+                {
+                    Console.WriteLine("No Cards In Search");
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();                 
             }
 
             public static void ChooseFeature(int choice)
