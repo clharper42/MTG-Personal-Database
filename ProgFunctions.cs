@@ -346,7 +346,7 @@ namespace MTGRares {
                     if(containsonly){
                         if(Colorids[i].Length == colors.Length)
                         {
-                             foreach(char let in colors)
+                            foreach(char let in colors)
                             {
                                 if(!Colorids[i].Contains(Char.ToUpper(let)))
                                 {
@@ -392,7 +392,7 @@ namespace MTGRares {
                             Console.WriteLine("--------");
                             Console.WriteLine(" ");                                                        
                         }
-                    }
+                    }                 
                 }
 
                 if(nocards)
