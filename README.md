@@ -10,3 +10,5 @@ With the infromation gathered from Scryfall the program provides features such a
 Once the program has gathered information from Scryfall the program updates a csv file with the cards' information for which it will pull from and update when the program is ran again.
 
 [Example of features as of first commit](https://streamable.com/60due7)
+
+[Example of type line features](https://streamable.com/asxu4h)
