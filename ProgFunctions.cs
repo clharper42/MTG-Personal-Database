@@ -12,7 +12,7 @@ namespace MTGRares {
             public static List<List<List<Card>>> SepedCardsByType {get; private set;}
             public static List<List<List<Card>>> SepedCardsBySubtype {get; private set;}
             
-            public static void CardSearch(string cardname, bool isexact) {
+            private static void CardSearch(string cardname, bool isexact) {
                 Console.Clear();
                 bool found = false;
                 if(isexact)
@@ -85,7 +85,7 @@ namespace MTGRares {
 
             }
 
-            public static void CardSearchByIndex(int index)
+            private static void CardSearchByIndex(int index)
             {
                 Console.Clear();
                 if(index >= 0 && index < Allcards.Count)
@@ -102,7 +102,7 @@ namespace MTGRares {
                 Console.ReadLine(); 
             }
 
-            public static void SepByColorId(bool showcards){
+            private static void SepByColorId(bool showcards){
                 if(Colorids is null)
                 {
                     Colorids = new List<string>();
@@ -263,7 +263,7 @@ namespace MTGRares {
                 }
             }
 
-            public static void DisplayByType()
+            private static void DisplayByType()
             {
                 if(Types is null)
                 {
@@ -289,10 +289,12 @@ namespace MTGRares {
                     }
                 }
                 Console.WriteLine(" ");
-                Console.WriteLine(" ");                
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();                 
             }
 
-            public static void DisplayBySubtype()
+            private static void DisplayBySubtype()
             {
                 if(Subtypes is null)
                 {
@@ -322,9 +324,11 @@ namespace MTGRares {
                 }
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine(); 
             }
 
-            public static void CardsByColor(string colors, bool containsonly)
+            private static void CardsByColor(string colors, bool containsonly)
             {
                 //'C' for colorless
                 List<Card> cardsincolor = new List<Card>();
@@ -392,7 +396,7 @@ namespace MTGRares {
                 
             }
 
-            public static void CardsByText(string expr)
+            private static void CardsByText(string expr)
             {
                 bool match = false;
                 bool printed = false;
@@ -463,7 +467,7 @@ namespace MTGRares {
                 Console.ReadLine(); 
             }
 
-            public static void CardsByType(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
+            private static void CardsByType(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
             {
                 if(SepedCardsByType is null)
                 {
@@ -567,7 +571,7 @@ namespace MTGRares {
                 Console.ReadLine();                 
             }
 
-            public static void CardsBySubtype(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
+            private static void CardsBySubtype(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
             {
                 if(SepedCardsBySubtype is null)
                 {
@@ -746,7 +750,7 @@ namespace MTGRares {
                                 while(true)
                                 {
                                     Console.Clear();
-                                    Console.WriteLine("Enter colors (W - white, U - Blue, B - Black, R - Red, G - green, C - Colorless):");
+                                    Console.WriteLine("Enter Colors (W - white, U - Blue, B - Black, R - Red, G - green, C - Colorless):");
                                     selection = Console.ReadLine();
                                     if(Regex.IsMatch(selection, @"^[WUBRGCwubrgc]+$"))
                                     {
@@ -754,7 +758,7 @@ namespace MTGRares {
                                         while(true)
                                         {
                                             Console.Clear();
-                                            Console.WriteLine("Are only these colors? (Y/N):");
+                                            Console.WriteLine("Are Only These Colors? (Y/N):");
                                             decs = Console.ReadLine();
                                             if("y".Equals(decs.ToLower()))
                                             {
@@ -784,6 +788,131 @@ namespace MTGRares {
                     Console.Clear();
                     Console.WriteLine("Enter Text(Cards Filterd By Color Idenity):");
                     CardsByText(Console.ReadLine());   
+                }
+                else if(choice == 4)
+                {
+                    while(true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Seprate Cards By Type/Subtype or Search By Type/Subtype:");
+                        Console.WriteLine("1 - Seprate By Type");
+                        Console.WriteLine("2 - Seprate By Subtype");
+                        Console.WriteLine("3 - Search By Type");
+                        Console.WriteLine("4 - Searh By Subtype");
+                        Console.WriteLine("5 - Exit");
+                        selection = Console.ReadLine();
+                        if(Regex.IsMatch(selection,@"^[1-5]$"))
+                        {
+                            if(Convert.ToInt32(selection) == 1)
+                            {
+                                DisplayByType();
+                            }
+                            else if(Convert.ToInt32(selection) == 2)
+                            {
+                                DisplayBySubtype();
+                            }
+                            else if(Convert.ToInt32(selection) == 3 || Convert.ToInt32(selection) == 4)
+                            {
+                                bool exactsearch;
+                                bool usecolors;
+                                bool colorsexact = false;
+                                string expr;
+                                string colors = "";
+                                string geninput = "";
+                                while(true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Exact Search? (Y/N):");
+                                    geninput = Console.ReadLine();
+                                    if("y".Equals(geninput.ToLower()))
+                                    {
+                                        exactsearch = true;
+                                        break;
+                                    }
+                                    else if("n".Equals(geninput.ToLower()))
+                                    {
+                                        exactsearch = false;
+                                        break;
+                                    }
+                                }
+
+                                Console.Clear();
+                                if(Convert.ToInt32(selection) == 3)
+                                {
+                                    Console.WriteLine("Enter Type:");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Enter Subtype:");
+                                }
+
+                                expr = Console.ReadLine();
+
+                                while(true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Use Color To Filter Serach? (Y/N):");
+                                    geninput = Console.ReadLine();
+                                    if("y".Equals(geninput.ToLower()))
+                                    {
+                                        usecolors = true;
+                                        break;
+                                    }
+                                    else if("n".Equals(geninput.ToLower()))
+                                    {
+                                        usecolors = false;
+                                        break;
+                                    }                                                                       
+                                }
+
+                                if(usecolors)
+                                {
+                                    while(true)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Enter Colors (W - white, U - Blue, B - Black, R - Red, G - green, C - Colorless):");
+                                        colors = Console.ReadLine();
+                                        if(Regex.IsMatch(colors, @"^[WUBRGCwubrgc]+$"))
+                                        {
+                                            break;
+                                        }                                        
+                                    }   
+
+                                    while(true)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Are Only These Colors? (Y/N):");
+                                        geninput = Console.ReadLine();
+                                        if("y".Equals(geninput.ToLower()))
+                                        {
+                                            colorsexact = true;
+                                            break;
+                                        }
+                                        else if("n".Equals(geninput.ToLower()))
+                                        {
+                                            colorsexact = false;
+                                            break;
+                                        }                                        
+                                    }
+
+                                }
+
+                                if(Convert.ToInt32(selection) == 3)
+                                {
+                                    CardsByType(expr,colors,usecolors,colorsexact,exactsearch);
+                                }
+                                else
+                                {
+                                    CardsBySubtype(expr,colors,usecolors,colorsexact,exactsearch);
+                                }
+
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
                 }
             }
 

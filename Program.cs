@@ -147,12 +147,13 @@ namespace MTGRares
                 Console.WriteLine("1 - Search For Card(s)");
                 Console.WriteLine("2 - Filter By Color");
                 Console.WriteLine("3 - Search By Card Text");
-                Console.WriteLine("4 - Exit");
+                Console.WriteLine("4 - Filter By Type Line");
+                Console.WriteLine("5 - Exit");
                 selection = Console.ReadLine();
-                if(Regex.IsMatch(selection,@"^[1-4]$"))
+                if(Regex.IsMatch(selection,@"^[1-5]$"))
                 {
                     
-                    if(Convert.ToInt32(selection) == 4)
+                    if(Convert.ToInt32(selection) == 5)
                     {
                         break;
                     }
