@@ -354,19 +354,10 @@ namespace MTGRares {
                                     break;
                                 }
                             }
-                            if(!notinset)
-                            {
-                                nocards = false;
-                                Console.WriteLine("- " + Colorids[i]);
-                                Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-                                foreach(Card card in SepedCardsByColorId[i])
-                                {
-                                    Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                            
-                                }
-                                Console.WriteLine("--------");
-                                Console.WriteLine(" ");                                
-                            }
-                            notinset = false;
+                        }
+                        else
+                        {
+                            notinset = true;
                         }
                     }
                     else
@@ -380,19 +371,21 @@ namespace MTGRares {
                                 break;
                             }
                         }
-                        if(!notinset)
+                    }
+
+                    if(!notinset)
+                    {
+                        nocards = false;
+                        Console.WriteLine("- " + Colorids[i]);
+                        Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+                        foreach(Card card in SepedCardsByColorId[i])
                         {
-                            nocards = false;
-                            Console.WriteLine("- " + Colorids[i]);
-                            Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-                            foreach(Card card in SepedCardsByColorId[i])
-                            {
-                                Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                            
-                            }
-                            Console.WriteLine("--------");
-                            Console.WriteLine(" ");                                                        
+                            Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                            
                         }
-                    }                 
+                        Console.WriteLine("--------");
+                        Console.WriteLine(" ");                                
+                    }
+                    notinset = false;             
                 }
 
                 if(nocards)
