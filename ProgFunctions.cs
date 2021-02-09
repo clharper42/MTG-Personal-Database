@@ -138,15 +138,17 @@ namespace MTGRares {
                 if(showcards)
                 {
                     Console.Clear();
-                    Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+                    // Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
                     for(int i = 0; i < Colorids.Count; i++)
                     {
-                        Console.WriteLine(Colorids[i]);
+                        Console.WriteLine("- " + Colorids[i]);
+                        Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
                         foreach(Card card in SepedCardsByColorId[i])
                         {
                             Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));
                         }
                         Console.WriteLine("--------");
+                        Console.WriteLine(" ");
                     }
                     Console.WriteLine(" ");
                     Console.WriteLine("Enter Any Key To Exit:");
@@ -331,16 +333,17 @@ namespace MTGRares {
             private static void CardsByColor(string colors, bool containsonly)
             {
                 //'C' for colorless
-                List<Card> cardsincolor = new List<Card>();
                 bool notinset = false;
+                bool nocards = true;
                 if(Colorids is null){
                     SepByColorId(false);
                 }
 
+                Console.Clear();
+
                 for(int i = 0; i < Colorids.Count; i++)
                  {
                     if(containsonly){
-                        //fix this
                         if(Colorids[i].Length == colors.Length)
                         {
                              foreach(char let in colors)
@@ -353,7 +356,15 @@ namespace MTGRares {
                             }
                             if(!notinset)
                             {
-                                cardsincolor.AddRange(SepedCardsByColorId[i]);
+                                nocards = false;
+                                Console.WriteLine("- " + Colorids[i]);
+                                Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+                                foreach(Card card in SepedCardsByColorId[i])
+                                {
+                                    Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                            
+                                }
+                                Console.WriteLine("--------");
+                                Console.WriteLine(" ");                                
                             }
                             notinset = false;
                         }
@@ -371,21 +382,20 @@ namespace MTGRares {
                         }
                         if(!notinset)
                         {
-                            cardsincolor.AddRange(SepedCardsByColorId[i]);
+                            nocards = false;
+                            Console.WriteLine("- " + Colorids[i]);
+                            Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+                            foreach(Card card in SepedCardsByColorId[i])
+                            {
+                                Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                            
+                            }
+                            Console.WriteLine("--------");
+                            Console.WriteLine(" ");                                                        
                         }
                     }
                 }
 
-                Console.Clear();
-                if(cardsincolor.Count > 0)
-                {
-                    Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-                    foreach(Card card in cardsincolor)
-                    {
-                        Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));
-                    }
-                }
-                else
+                if(nocards)
                 {
                     Console.WriteLine("No Cards In Color(s)");
                 }
@@ -750,7 +760,7 @@ namespace MTGRares {
                                 while(true)
                                 {
                                     Console.Clear();
-                                    Console.WriteLine("Enter Colors (W - white, U - Blue, B - Black, R - Red, G - green, C - Colorless):");
+                                    Console.WriteLine("Enter Colors (W - White, U - Blue, B - Black, R - Red, G - Green, C - Colorless):");
                                     selection = Console.ReadLine();
                                     if(Regex.IsMatch(selection, @"^[WUBRGCwubrgc]+$"))
                                     {
@@ -870,7 +880,7 @@ namespace MTGRares {
                                     while(true)
                                     {
                                         Console.Clear();
-                                        Console.WriteLine("Enter Colors (W - white, U - Blue, B - Black, R - Red, G - green, C - Colorless):");
+                                        Console.WriteLine("Enter Colors (W - White, U - Blue, B - Black, R - Red, G - Green, C - Colorless):");
                                         colors = Console.ReadLine();
                                         if(Regex.IsMatch(colors, @"^[WUBRGCwubrgc]+$"))
                                         {
