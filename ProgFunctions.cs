@@ -851,7 +851,7 @@ namespace MTGRares {
                                 while(true)
                                 {
                                     Console.Clear();
-                                    Console.WriteLine("Use Color To Filter Serach? (Y/N):");
+                                    Console.WriteLine("Use Color Idenity To Filter Serach? (Y/N):");
                                     geninput = Console.ReadLine();
                                     if("y".Equals(geninput.ToLower()))
                                     {
