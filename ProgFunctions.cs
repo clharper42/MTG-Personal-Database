@@ -9,6 +9,8 @@ namespace MTGRares {
             public static List<List<Card>> SepedCardsByColorId {get; private set;}
             public static List<List<String>> Types {get; private set;}
             public static List<List<String>> Subtypes {get; private set;}
+            public static List<List<String>> Cmcs {get; private set;}
+            public static List<List<List<Card>>> SepedCardsByCmcs {get; private set;}
             public static List<List<List<Card>>> SepedCardsByType {get; private set;}
             public static List<List<List<Card>>> SepedCardsBySubtype {get; private set;}
             
@@ -263,6 +265,80 @@ namespace MTGRares {
                         }
                     }
                 }
+            }
+
+            private static void SepByCMC()
+            {
+                Cmcs = new List<List<string>>(); // color - cmc
+                SepedCardsByCmcs = new List<List<List<Card>>>(); // color - cmc - card
+
+                if(Colorids is null)
+                {
+                    SepByColorId(false);
+                }
+
+                foreach(List<Card> color in SepedCardsByColorId)
+                {
+                    Cmcs.Add(new List<string>());
+                    SepedCardsByCmcs.Add(new List<List<Card>>());
+
+                    foreach(Card card in color)
+                    {
+                        if(!Cmcs[Cmcs.Count-1].Contains(card.Cmc.Split('.')[0]))
+                        {
+                            Cmcs[Cmcs.Count-1].Add(card.Cmc.Split('.')[0]);
+                            SepedCardsByCmcs[SepedCardsByCmcs.Count - 1].Add(new List<Card>());
+                            SepedCardsByCmcs[SepedCardsByCmcs.Count - 1][Cmcs[Cmcs.Count-1].Count-1].Add(card);
+                        }
+                        else
+                        {
+                            SepedCardsByCmcs[SepedCardsByCmcs.Count - 1][Cmcs[Cmcs.Count-1].IndexOf(card.Cmc.Split('.')[0])].Add(card);
+                        }
+                    }
+                }
+
+                foreach(List<List<Card>> color in SepedCardsByCmcs)
+                {
+                    color.Sort((x,y) => {return x[0].Cmc.Split('.')[0].CompareTo(y[0].Cmc.Split('.')[0]);});
+                }
+
+                foreach(List<string> cmc in Cmcs)
+                {
+                    cmc.Sort((x,y) => {return x.CompareTo(y);});
+                }
+
+
+            }
+
+            public static void DisplayByCMC() //refactor displays to be one function
+            {
+                if(Cmcs is null)
+                {
+                    SepByCMC();
+                }
+
+                Console.Clear();
+                for(int i = 0; i < SepedCardsByCmcs.Count; i++)
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("--" + " " + Colorids[i]);
+
+                    for(int j = 0; j < SepedCardsByCmcs[i].Count; j++)
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine("-" + " " + Cmcs[i][j]);
+                        Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+                        foreach(Card card in SepedCardsByCmcs[i][j])
+                        {
+                          Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));
+                        }
+                    }
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();                
             }
 
             private static void DisplayByType()

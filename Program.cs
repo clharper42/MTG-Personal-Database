@@ -136,7 +136,7 @@ namespace MTGRares
  
             ProgFunctions.Allcards = allcards;
      
-            //Work on interactions. Search by card color other than idenity. Search by id displays more information about card
+            //Work on interactions. CMC sorting. Search by card color other than idenity. Price interaction. Search by id displays more information about card
             Console.WriteLine("Database loaded");
             Console.WriteLine("-----");
 
