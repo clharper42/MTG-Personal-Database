@@ -475,7 +475,7 @@ namespace MTGRares {
                 
             }
 
-            private static void CardsByText(string expr)
+            private static void CardsByText(string expr) //change to allow color selection like other cardsby
             {
                 bool match = false;
                 bool printed = false;
@@ -546,7 +546,7 @@ namespace MTGRares {
                 Console.ReadLine(); 
             }
 
-            private static void CardsByType(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
+            private static void CardsByType(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact) //Refactor cardsby to be one function
             {
                 if(SepedCardsByType is null)
                 {
@@ -752,6 +752,110 @@ namespace MTGRares {
                 Console.WriteLine(" ");
                 Console.WriteLine("Enter Any Key To Exit:");
                 Console.ReadLine();                 
+            }
+
+            private static void CardsByCMC(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
+            {
+                if(SepedCardsByCmcs is null)
+                {
+                    SepByCMC();
+                }
+
+                Console.Clear();
+
+                bool printed = false;
+                for(int i = 0; i < SepedCardsByCmcs.Count; i++) //color
+                {
+                    bool correctcolor = true;
+                    bool correctcmc = true;
+                    bool consolecolor = true;
+                    if(usecolors)
+                    {
+                        if(colorsexact)
+                        {
+                            if(colors.Length == Colorids[i].Length)
+                            {
+                                foreach(char color in colors)
+                                {
+                                    if(!Colorids[i].Contains(char.ToUpper(color)))
+                                    {
+                                        correctcolor = false;
+                                        break;
+                                    }
+                                }                               
+                            }
+                            else
+                            {
+                                correctcolor = false;
+                            }
+                        }
+                        else
+                        {
+                            correctcolor = false;
+                            foreach(char color in colors)
+                            {
+                                if(Colorids[i].Contains(char.ToUpper(color)))
+                                {
+                                    correctcolor = true;
+                                    break;
+                                }
+                            }
+                        }                            
+                    }
+
+                    if(correctcolor)
+                    {
+                        consolecolor = true;
+
+                        for(int j = 0; j < SepedCardsByCmcs[i].Count; j++) //cmc
+                        {
+                            correctcmc = false;
+                            if(exprexact)
+                            {
+                                if(Cmcs[i][j].ToLower().Equals(expr.ToLower()))
+                                {
+                                    correctcmc = true;
+                                }
+                            }
+                            else
+                            {
+                                if(Regex.IsMatch(Cmcs[i][j].ToLower(),expr.ToLower()))
+                                {
+                                    correctcmc = true;
+                                }
+                            }
+
+                            if(correctcmc)
+                            {
+                                if(consolecolor)
+                                {
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine("--" + " " + Colorids[i]);
+                                    consolecolor = false;
+                                    printed = true;
+                                }
+
+                                Console.WriteLine(" ");
+                                Console.WriteLine("-" + " " + Cmcs[i][j]);
+                                Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+
+                                foreach(Card card in SepedCardsByCmcs[i][j])
+                                {
+                                    Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                          
+                                }                                
+                            }
+                        }
+                    }
+                }
+
+                if(!printed)
+                {
+                    Console.WriteLine("No Cards In Search");
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine(); 
             }
 
             public static void ChooseFeature(int choice)
@@ -991,6 +1095,99 @@ namespace MTGRares {
                                 break;
                             }
                         }
+                    }
+                }
+                else if(choice == 5) //cmc, like above
+                {
+                    while(true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Seprate Cards By CMC or Search By CMC:");
+                        Console.WriteLine("1 - Seprate By CMC");
+                        Console.WriteLine("2 - Search By CMC");
+                        Console.WriteLine("3 - Exit");
+                        selection = Console.ReadLine();
+                        if(Regex.IsMatch(selection,@"^[1-3]$"))
+                        {
+                            if(Convert.ToInt32(selection) == 1)
+                            {
+                                DisplayByCMC();
+                            }
+                            else if(Convert.ToInt32(selection) == 2)
+                            {
+                                bool usecolors;
+                                bool colorsexact = false;
+                                string expr;
+                                string colors = "";
+                                string geninput = "";
+
+                                while(true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Enter CMC:");
+                                    expr = Console.ReadLine();
+                                    if(Regex.IsMatch(expr, @"^[0-9]+$"))
+                                    {
+                                        break;
+                                    }  
+                                }
+                                
+                                while(true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Use Color Idenity To Filter Serach? (Y/N):");
+                                    geninput = Console.ReadLine();
+                                    if("y".Equals(geninput.ToLower()))
+                                    {
+                                        usecolors = true;
+                                        break;
+                                    }
+                                    else if("n".Equals(geninput.ToLower()))
+                                    {
+                                        usecolors = false;
+                                        break;
+                                    }                                                                       
+                                }
+
+                                if(usecolors)
+                                {
+                                    while(true)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Enter Colors (W - White, U - Blue, B - Black, R - Red, G - Green, C - Colorless):");
+                                        colors = Console.ReadLine();
+                                        if(Regex.IsMatch(colors, @"^[WUBRGCwubrgc]+$"))
+                                        {
+                                            break;
+                                        }                                        
+                                    }   
+
+                                    while(true)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Are Only These Colors? (Y/N):");
+                                        geninput = Console.ReadLine();
+                                        if("y".Equals(geninput.ToLower()))
+                                        {
+                                            colorsexact = true;
+                                            break;
+                                        }
+                                        else if("n".Equals(geninput.ToLower()))
+                                        {
+                                            colorsexact = false;
+                                            break;
+                                        }                                        
+                                    }
+
+                                }
+
+                                CardsByCMC(expr,colors,usecolors,colorsexact,true);                                
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }                    
                     }
                 }
             }

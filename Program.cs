@@ -136,7 +136,7 @@ namespace MTGRares
  
             ProgFunctions.Allcards = allcards;
      
-            //Work on interactions. CMC sorting. Search by card color other than idenity. Price interaction. Search by id displays more information about card
+            //Work on interactions. CMC interaction text. CMC and typeline dispaly together? Search by card color other than idenity. Price interaction. Search by id displays more information about card
             Console.WriteLine("Database loaded");
             Console.WriteLine("-----");
 
@@ -148,12 +148,13 @@ namespace MTGRares
                 Console.WriteLine("2 - Filter By Color");
                 Console.WriteLine("3 - Search By Card Text");
                 Console.WriteLine("4 - Filter By Type Line");
-                Console.WriteLine("5 - Exit");
+                Console.WriteLine("5 - Filter By CMC");
+                Console.WriteLine("6 - Exit");
                 selection = Console.ReadLine();
-                if(Regex.IsMatch(selection,@"^[1-5]$"))
+                if(Regex.IsMatch(selection,@"^[1-6]$"))
                 {
                     
-                    if(Convert.ToInt32(selection) == 5)
+                    if(Convert.ToInt32(selection) == 6)
                     {
                         break;
                     }
