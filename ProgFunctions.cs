@@ -309,91 +309,23 @@ namespace MTGRares {
 
 
             }
-
-            public static void DisplayByCMC() //refactor displays to be one function
+            private static void DisplayByFilter(List<List<List<Card>>> sepedcardsbyfilter, List<List<String>> filter)
             {
-                if(Cmcs is null)
-                {
-                    SepByCMC();
-                }
-
                 Console.Clear();
-                for(int i = 0; i < SepedCardsByCmcs.Count; i++)
+                for(int i = 0; i < sepedcardsbyfilter.Count; i++)
                 {
-                    Console.WriteLine(" ");
-                    Console.WriteLine(" ");
-                    Console.WriteLine("--" + " " + Colorids[i]);
-
-                    for(int j = 0; j < SepedCardsByCmcs[i].Count; j++)
-                    {
-                        Console.WriteLine(" ");
-                        Console.WriteLine("-" + " " + Cmcs[i][j]);
-                        Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-                        foreach(Card card in SepedCardsByCmcs[i][j])
-                        {
-                          Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));
-                        }
-                    }
-                }
-                Console.WriteLine(" ");
-                Console.WriteLine(" ");
-                Console.WriteLine("Enter Any Key To Exit:");
-                Console.ReadLine();                
-            }
-
-            private static void DisplayByType()
-            {
-                if(Types is null)
-                {
-                    SepByTypeLine();
-                }
-
-                Console.Clear();
-                for(int i = 0; i < SepedCardsByType.Count; i++)
-                {
-                    Console.WriteLine(" ");
-                    Console.WriteLine(" ");
-                    Console.WriteLine("--" + " " + Colorids[i]);
-
-                    for(int j = 0; j < SepedCardsByType[i].Count; j++)
-                    {
-                        Console.WriteLine(" ");
-                        Console.WriteLine("-" + " " + Types[i][j]);
-                        Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-                        foreach(Card card in SepedCardsByType[i][j])
-                        {
-                          Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));
-                        }
-                    }
-                }
-                Console.WriteLine(" ");
-                Console.WriteLine(" ");
-                Console.WriteLine("Enter Any Key To Exit:");
-                Console.ReadLine();                 
-            }
-
-            private static void DisplayBySubtype()
-            {
-                if(Subtypes is null)
-                {
-                    SepByTypeLine();
-                }
-
-                Console.Clear();
-                for(int i = 0; i < SepedCardsBySubtype.Count; i++)
-                {
-                    if(SepedCardsBySubtype[i].Count != 0)
+                    if(sepedcardsbyfilter[i].Count != 0)
                     {
                         Console.WriteLine(" ");
                         Console.WriteLine(" ");
                         Console.WriteLine("--" + " " + Colorids[i]);
 
-                        for(int j = 0; j < SepedCardsBySubtype[i].Count; j++)
+                        for(int j = 0; j < sepedcardsbyfilter[i].Count; j++)
                         {
                             Console.WriteLine(" ");
-                            Console.WriteLine("-" + " " + Subtypes[i][j]);
+                            Console.WriteLine("-" + " " + filter[i][j]);
                             Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-                            foreach(Card card in SepedCardsBySubtype[i][j])
+                            foreach(Card card in sepedcardsbyfilter[i][j])
                             {
                                 Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                            
                             }
@@ -403,7 +335,7 @@ namespace MTGRares {
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
                 Console.WriteLine("Enter Any Key To Exit:");
-                Console.ReadLine(); 
+                Console.ReadLine();                 
             }
 
             private static void CardsByColor(string colors, bool containsonly)
@@ -593,7 +525,7 @@ namespace MTGRares {
                     {
                         consolecolor = true;
 
-                        for(int j = 0; j < sepedcardsbyfilter[i].Count; j++) //cmc
+                        for(int j = 0; j < sepedcardsbyfilter[i].Count; j++) //filter
                         {
                             correctcmc = false;
                             if(exprexact)
@@ -772,13 +704,18 @@ namespace MTGRares {
                         selection = Console.ReadLine();
                         if(Regex.IsMatch(selection,@"^[1-5]$"))
                         {
+                            if(SepedCardsByType is null)
+                            {
+                                SepByTypeLine();
+                            }
+
                             if(Convert.ToInt32(selection) == 1)
                             {
-                                DisplayByType();
+                                DisplayByFilter(SepedCardsByType,Types);
                             }
                             else if(Convert.ToInt32(selection) == 2)
                             {
-                                DisplayBySubtype();
+                                DisplayByFilter(SepedCardsBySubtype,Subtypes);
                             }
                             else if(Convert.ToInt32(selection) == 3 || Convert.ToInt32(selection) == 4)
                             {
@@ -866,11 +803,6 @@ namespace MTGRares {
 
                                 }
 
-                                if(SepedCardsByType is null)
-                                {
-                                    SepByTypeLine();
-                                }
-
                                 if(Convert.ToInt32(selection) == 3)
                                 {
                                     CardsByFilter(SepedCardsByType,Types,expr,colors,usecolors,colorsexact,exactsearch);
@@ -900,9 +832,14 @@ namespace MTGRares {
                         selection = Console.ReadLine();
                         if(Regex.IsMatch(selection,@"^[1-3]$"))
                         {
+                            if(SepedCardsByCmcs is null)
+                            {
+                                SepByCMC();
+                            }
+
                             if(Convert.ToInt32(selection) == 1)
                             {
-                                DisplayByCMC();
+                                DisplayByFilter(SepedCardsByCmcs,Cmcs);
                             }
                             else if(Convert.ToInt32(selection) == 2)
                             {
@@ -972,13 +909,7 @@ namespace MTGRares {
 
                                 }
 
-                                if(SepedCardsByCmcs is null)
-                                {
-                                    SepByCMC();
-                                }
-
-                                CardsByFilter(SepedCardsByCmcs,Cmcs,expr,colors,usecolors,colorsexact,true);
-                                //CardsByCMC(expr,colors,usecolors,colorsexact,true);                                
+                                CardsByFilter(SepedCardsByCmcs,Cmcs,expr,colors,usecolors,colorsexact,true);                              
                             }
                             else
                             {
