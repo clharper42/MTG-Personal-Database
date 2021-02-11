@@ -14,3 +14,5 @@ Set - Collector Number - Printing(Normal/Foil) is the unique identifier for a ca
 [Example of features as of first commit](https://streamable.com/60due7)
 
 [Example of type line features](https://streamable.com/asxu4h)
+
+[Example of CMC features](https://streamable.com/zphuo9)
