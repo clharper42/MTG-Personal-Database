@@ -137,7 +137,7 @@ namespace MTGRares
             ProgFunctions.Allcards = allcards;
      
             //Work on interactions. CMC interaction text. CMC and typeline dispaly together? Search by card color other than idenity. Price interaction. Search by id displays more information about card
-            Console.WriteLine("Database loaded");
+            Console.WriteLine("Database Loaded");
             Console.WriteLine("-----");
 
             string selection;
