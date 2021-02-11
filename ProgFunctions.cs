@@ -545,226 +545,12 @@ namespace MTGRares {
                 Console.WriteLine("Enter Any Key To Exit:");
                 Console.ReadLine(); 
             }
-
-            private static void CardsByType(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact) //Refactor cardsby to be one function
+            private static void CardsByFilter(List<List<List<Card>>> sepedcardsbyfilter, List<List<String>> filter, string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
             {
-                if(SepedCardsByType is null)
-                {
-                    SepByTypeLine();
-                }
-
                 Console.Clear();
 
                 bool printed = false;
-                for(int i = 0; i < SepedCardsByType.Count; i++) //color
-                {
-                    bool correctcolor = true;
-                    bool correcttype = true;
-                    bool consolecolor = true;
-                    if(usecolors)
-                    {
-                        if(colorsexact)
-                        {
-                            if(colors.Length == Colorids[i].Length)
-                            {
-                                foreach(char color in colors)
-                                {
-                                    if(!Colorids[i].Contains(char.ToUpper(color)))
-                                    {
-                                        correctcolor = false;
-                                        break;
-                                    }
-                                }                               
-                            }
-                            else
-                            {
-                                correctcolor = false;
-                            }
-                        }
-                        else
-                        {
-                            correctcolor = false;
-                            foreach(char color in colors)
-                            {
-                                if(Colorids[i].Contains(char.ToUpper(color)))
-                                {
-                                    correctcolor = true;
-                                    break;
-                                }
-                            }
-                        }                            
-                    }
-
-                    if(correctcolor)
-                    {
-                        consolecolor = true;
-
-                        for(int j = 0; j < SepedCardsByType[i].Count; j++) //type
-                        {
-                            correcttype = false;
-                            if(exprexact)
-                            {
-                                if(Types[i][j].ToLower().Equals(expr.ToLower()))
-                                {
-                                    correcttype = true;
-                                }
-                            }
-                            else
-                            {
-                                if(Regex.IsMatch(Types[i][j].ToLower(),expr.ToLower()))
-                                {
-                                    correcttype = true;
-                                }
-                            }
-
-                            if(correcttype)
-                            {
-                                if(consolecolor)
-                                {
-                                    Console.WriteLine(" ");
-                                    Console.WriteLine(" ");
-                                    Console.WriteLine("--" + " " + Colorids[i]);
-                                    consolecolor = false;
-                                    printed = true;
-                                }
-
-                                Console.WriteLine(" ");
-                                Console.WriteLine("-" + " " + Types[i][j]);
-                                Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-
-                                foreach(Card card in SepedCardsByType[i][j])
-                                {
-                                    Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                          
-                                }                                
-                            }
-                        }
-                    }
-                }
-
-                if(!printed)
-                {
-                    Console.WriteLine("No Cards In Search");
-                }
-                Console.WriteLine(" ");
-                Console.WriteLine("Enter Any Key To Exit:");
-                Console.ReadLine();                 
-            }
-
-            private static void CardsBySubtype(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
-            {
-                if(SepedCardsBySubtype is null)
-                {
-                    SepByTypeLine();
-                }
-
-                Console.Clear();
-
-                bool printed = false;
-                for(int i = 0; i < SepedCardsBySubtype.Count; i++) //color
-                {
-                    bool correctcolor = true;
-                    bool correcttype = true;
-                    bool consolecolor = true;
-                    if(usecolors)
-                    {
-                        if(colorsexact)
-                        {
-                            if(colors.Length == Colorids[i].Length)
-                            {
-                                foreach(char color in colors)
-                                {
-                                    if(!Colorids[i].Contains(char.ToUpper(color)))
-                                    {
-                                        correctcolor = false;
-                                        break;
-                                    }
-                                }                               
-                            }
-                            else
-                            {
-                                correctcolor = false;
-                            }
-                        }
-                        else
-                        {
-                            correctcolor = false;
-                            foreach(char color in colors)
-                            {
-                                if(Colorids[i].Contains(char.ToUpper(color)))
-                                {
-                                    correctcolor = true;
-                                    break;
-                                }
-                            }
-                        }                            
-                    }
-
-                    if(correctcolor)
-                    {
-                        consolecolor = true;
-
-                        for(int j = 0; j < SepedCardsBySubtype[i].Count; j++) //type
-                        {
-                            correcttype = false;
-                            if(exprexact)
-                            {
-                                if(Subtypes[i][j].ToLower().Equals(expr.ToLower()))
-                                {
-                                    correcttype = true;
-                                }
-                            }
-                            else
-                            {
-                                if(Regex.IsMatch(Subtypes[i][j].ToLower(),expr.ToLower()))
-                                {
-                                    correcttype = true;
-                                }
-                            }
-
-                            if(correcttype)
-                            {
-                                if(consolecolor)
-                                {
-                                    Console.WriteLine(" ");
-                                    Console.WriteLine(" ");
-                                    Console.WriteLine("--" + " " + Colorids[i]);
-                                    consolecolor = false;
-                                    printed = true;
-                                }
-
-                                Console.WriteLine(" ");
-                                Console.WriteLine("-" + " " + Subtypes[i][j]);
-                                Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-
-                                foreach(Card card in SepedCardsBySubtype[i][j])
-                                {
-                                    Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                          
-                                }                                
-                            }
-                        }
-                    }
-                }
-
-                if(!printed)
-                {
-                    Console.WriteLine("No Cards In Search");
-                }
-                Console.WriteLine(" ");
-                Console.WriteLine("Enter Any Key To Exit:");
-                Console.ReadLine();                 
-            }
-
-            private static void CardsByCMC(string expr, string colors, bool usecolors, bool colorsexact, bool exprexact)
-            {
-                if(SepedCardsByCmcs is null)
-                {
-                    SepByCMC();
-                }
-
-                Console.Clear();
-
-                bool printed = false;
-                for(int i = 0; i < SepedCardsByCmcs.Count; i++) //color
+                for(int i = 0; i < sepedcardsbyfilter.Count; i++) //color
                 {
                     bool correctcolor = true;
                     bool correctcmc = true;
@@ -807,19 +593,19 @@ namespace MTGRares {
                     {
                         consolecolor = true;
 
-                        for(int j = 0; j < SepedCardsByCmcs[i].Count; j++) //cmc
+                        for(int j = 0; j < sepedcardsbyfilter[i].Count; j++) //cmc
                         {
                             correctcmc = false;
                             if(exprexact)
                             {
-                                if(Cmcs[i][j].ToLower().Equals(expr.ToLower()))
+                                if(filter[i][j].ToLower().Equals(expr.ToLower()))
                                 {
                                     correctcmc = true;
                                 }
                             }
                             else
                             {
-                                if(Regex.IsMatch(Cmcs[i][j].ToLower(),expr.ToLower()))
+                                if(Regex.IsMatch(filter[i][j].ToLower(),expr.ToLower()))
                                 {
                                     correctcmc = true;
                                 }
@@ -837,10 +623,10 @@ namespace MTGRares {
                                 }
 
                                 Console.WriteLine(" ");
-                                Console.WriteLine("-" + " " + Cmcs[i][j]);
+                                Console.WriteLine("-" + " " + filter[i][j]);
                                 Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
 
-                                foreach(Card card in SepedCardsByCmcs[i][j])
+                                foreach(Card card in sepedcardsbyfilter[i][j])
                                 {
                                     Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + Allcards.IndexOf(card));                          
                                 }                                
@@ -1080,13 +866,18 @@ namespace MTGRares {
 
                                 }
 
+                                if(SepedCardsByType is null)
+                                {
+                                    SepByTypeLine();
+                                }
+
                                 if(Convert.ToInt32(selection) == 3)
                                 {
-                                    CardsByType(expr,colors,usecolors,colorsexact,exactsearch);
+                                    CardsByFilter(SepedCardsByType,Types,expr,colors,usecolors,colorsexact,exactsearch);
                                 }
                                 else
                                 {
-                                    CardsBySubtype(expr,colors,usecolors,colorsexact,exactsearch);
+                                    CardsByFilter(SepedCardsBySubtype,Subtypes,expr,colors,usecolors,colorsexact,exactsearch);
                                 }
 
                             }
@@ -1097,7 +888,7 @@ namespace MTGRares {
                         }
                     }
                 }
-                else if(choice == 5) //cmc, like above
+                else if(choice == 5)
                 {
                     while(true)
                     {
@@ -1181,7 +972,13 @@ namespace MTGRares {
 
                                 }
 
-                                CardsByCMC(expr,colors,usecolors,colorsexact,true);                                
+                                if(SepedCardsByCmcs is null)
+                                {
+                                    SepByCMC();
+                                }
+
+                                CardsByFilter(SepedCardsByCmcs,Cmcs,expr,colors,usecolors,colorsexact,true);
+                                //CardsByCMC(expr,colors,usecolors,colorsexact,true);                                
                             }
                             else
                             {
