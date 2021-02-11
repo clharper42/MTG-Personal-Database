@@ -145,8 +145,8 @@ namespace MTGRares
             {
                 Console.WriteLine("Select Feature:");
                 Console.WriteLine("1 - Search For Card(s)");
-                Console.WriteLine("2 - Filter By Color");
-                Console.WriteLine("3 - Search By Card Text");
+                Console.WriteLine("2 - Search By Card Text");
+                Console.WriteLine("3 - Filter By Color");
                 Console.WriteLine("4 - Filter By Type Line");
                 Console.WriteLine("5 - Filter By CMC");
                 Console.WriteLine("6 - Exit");

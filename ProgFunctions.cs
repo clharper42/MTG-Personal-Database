@@ -631,6 +631,12 @@ namespace MTGRares {
                 }
                 else if(choice == 2)
                 {
+                    Console.Clear();
+                    Console.WriteLine("Enter Text(Cards Filterd By Color Idenity):");
+                    CardsByText(Console.ReadLine());   
+                }
+                else if(choice == 3)
+                {
                     while(true)
                     {
                         Console.Clear();
@@ -683,13 +689,7 @@ namespace MTGRares {
                             }
                         }                     
                     }
-                }
-                else if(choice == 3)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Enter Text(Cards Filterd By Color Idenity):");
-                    CardsByText(Console.ReadLine());   
-                }
+                }                
                 else if(choice == 4)
                 {
                     while(true)
