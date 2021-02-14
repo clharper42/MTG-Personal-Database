@@ -41,6 +41,10 @@ namespace MTGRares
             {
                 
                 tcgplayercards.Add(new ExcelCard{ Name = row.Field<string>(2), Special_name = row.Field<string>(1), Set = row.Field<string>(5), Amount = Convert.ToInt32(row.Field<string>(0)), Printing = row.Field<string>(6), Collector_number = row.Field<string>(4)  });
+                if(tcgplayercards[tcgplayercards.Count-1].Set.ToLower().Equals("10e") && tcgplayercards[tcgplayercards.Count-1].Printing.Equals("Foil"))
+                {
+                    tcgplayercards[tcgplayercards.Count-1].Collector_number = tcgplayercards[tcgplayercards.Count-1].Collector_number + "★";
+                }              
             }
 
             if(tcgplayercards.Count != 0)
@@ -136,10 +140,10 @@ namespace MTGRares
  
             ProgFunctions.Allcards = allcards;
      
-            //Work on interactions. CMC interaction text. CMC and typeline dispaly together? Search by card color other than idenity. Price interaction. Search by id displays more information about card
+            //Work on interactions. Price interaction (account for more than one card). CMC and typeline dispaly together? Search by card color other than idenity. Price interaction. Search by id displays more information about card
             Console.WriteLine("Database Loaded");
             Console.WriteLine("-----");
-
+            ProgFunctions.CardsByPrice();
             string selection;
             while(true)
             {
