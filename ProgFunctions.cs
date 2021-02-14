@@ -607,7 +607,7 @@ namespace MTGRares {
                 // name amount x price - total, when printing
             }
 
-            public static void CardsByPrice()
+            private static void CardsByPrice()
             {
                 if(Allcardsprice is null)
                 {
@@ -623,13 +623,13 @@ namespace MTGRares {
                     if(card.Printing.Equals("Foil"))
                     {
                         calc = (Convert.ToDouble(card.Prices["usd_foil"]) * card.Amount);
-                        total = total + calc;
+                        total = Math.Round(total + calc, 2);
                         Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + + Allcards.IndexOf(card) + " | " + card.Amount + "x" + card.Prices["usd_foil"] + " = " + calc); 
                     }
                     else
                     {
                         calc = (Convert.ToDouble(card.Prices["usd"]) * card.Amount);
-                        total = total + calc;
+                        total = Math.Round(total + calc, 2);
                         Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + + Allcards.IndexOf(card) + " | " + card.Amount + "x" + card.Prices["usd"] + " = " + calc); 
                     }
                 }
@@ -981,6 +981,10 @@ namespace MTGRares {
                             }
                         }                    
                     }
+                }
+                else if(choice == 6)
+                {
+                    CardsByPrice();
                 }
             }
 
