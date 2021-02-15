@@ -10,6 +10,8 @@ namespace MTGRares {
             public static List<List<String>> Types {get; private set;}
             public static List<List<String>> Subtypes {get; private set;}
             public static List<List<String>> Cmcs {get; private set;}
+            public static List<List<String>> Keywords {get; private set;}
+            public static List<List<List<Card>>> SepedCardsByKeywords{get; private set;}
             public static List<List<List<Card>>> SepedCardsByCmcs {get; private set;}
             public static List<List<List<Card>>> SepedCardsByType {get; private set;}
             public static List<List<List<Card>>> SepedCardsBySubtype {get; private set;}
@@ -308,6 +310,40 @@ namespace MTGRares {
                 }
 
 
+            }
+            private static void SepByKeyword()
+            {
+                Keywords = new List<List<string>>();  // color - keyword
+                SepedCardsByKeywords = new List<List<List<Card>>>(); // color - keyword - card
+
+                if(Colorids is null)
+                {
+                    SepByColorId(false);
+                }
+
+                foreach(List<Card> color in SepedCardsByColorId)
+                {
+                    Keywords.Add(new List<string>());
+                    SepedCardsByKeywords.Add(new List<List<Card>>());
+
+                    foreach(Card card in color)
+                    {
+                        foreach(String keyword in card.Keywords)
+                        {
+                            if(!Keywords[Keywords.Count - 1].Contains(keyword))
+                            {
+                                Keywords[Keywords.Count - 1].Add(keyword);
+                                SepedCardsByKeywords[SepedCardsByKeywords.Count - 1].Add(new List<Card>());
+                                SepedCardsByKeywords[SepedCardsByKeywords.Count - 1][Keywords[Keywords.Count - 1].Count-1].Add(card);
+                            }
+                            else
+                            {
+                                SepedCardsByKeywords[SepedCardsByKeywords.Count - 1][Keywords[Keywords.Count - 1].IndexOf(keyword)].Add(card);
+                            }
+                        }
+                    }
+                }
+               
             }
             private static void DisplayByFilter(List<List<List<Card>>> sepedcardsbyfilter, List<List<String>> filter)
             {
@@ -983,6 +1019,115 @@ namespace MTGRares {
                     }
                 }
                 else if(choice == 6)
+                {
+                    while(true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Seprate Cards By Keyword or Search By Keyword:");
+                        Console.WriteLine("1 - Seprate By Keyword");
+                        Console.WriteLine("2 - Search By Keyword");
+                        Console.WriteLine("3 - Exit");
+                        selection = Console.ReadLine();
+                        if(Regex.IsMatch(selection,@"^[1-3]$"))
+                        {
+                            if(SepedCardsByKeywords is null)
+                            {
+                                SepByKeyword();
+                            }
+
+                            if(Convert.ToInt32(selection) == 1)
+                            {
+                                DisplayByFilter(SepedCardsByKeywords,Keywords);
+                            }
+                            else if(Convert.ToInt32(selection) == 2)
+                            {
+                                bool exactsearch;
+                                bool usecolors;
+                                bool colorsexact = false;
+                                string expr;
+                                string colors = "";
+                                string geninput = "";
+                                while(true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Exact Search? (Y/N):");
+                                    geninput = Console.ReadLine();
+                                    if("y".Equals(geninput.ToLower()))
+                                    {
+                                        exactsearch = true;
+                                        break;
+                                    }
+                                    else if("n".Equals(geninput.ToLower()))
+                                    {
+                                        exactsearch = false;
+                                        break;
+                                    }
+                                }
+
+                                Console.Clear();
+                                Console.WriteLine("Enter Keyword: ");
+                                expr = Console.ReadLine();
+
+                                while(true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Use Color Idenity To Filter Serach? (Y/N):");
+                                    geninput = Console.ReadLine();
+                                    if("y".Equals(geninput.ToLower()))
+                                    {
+                                        usecolors = true;
+                                        break;
+                                    }
+                                    else if("n".Equals(geninput.ToLower()))
+                                    {
+                                        usecolors = false;
+                                        break;
+                                    }                                                                       
+                                }
+
+                                if(usecolors)
+                                {
+                                    while(true)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Enter Colors (W - White, U - Blue, B - Black, R - Red, G - Green, C - Colorless):");
+                                        colors = Console.ReadLine();
+                                        if(Regex.IsMatch(colors, @"^[WUBRGCwubrgc]+$"))
+                                        {
+                                            break;
+                                        }                                        
+                                    }   
+
+                                    while(true)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Are Only These Colors? (Y/N):");
+                                        geninput = Console.ReadLine();
+                                        if("y".Equals(geninput.ToLower()))
+                                        {
+                                            colorsexact = true;
+                                            break;
+                                        }
+                                        else if("n".Equals(geninput.ToLower()))
+                                        {
+                                            colorsexact = false;
+                                            break;
+                                        }                                        
+                                    }
+
+                                }
+
+                                CardsByFilter(SepedCardsByKeywords,Keywords,expr,colors,usecolors,colorsexact,exactsearch);                                                              
+                            }
+                            else
+                            {
+                                break;
+                            }
+
+                        }                                               
+                    }
+                }
+                else if(choice == 7)
                 {
                     CardsByPrice();
                 }

@@ -152,13 +152,14 @@ namespace MTGRares
                 Console.WriteLine("3 - Filter By Color");
                 Console.WriteLine("4 - Filter By Type Line");
                 Console.WriteLine("5 - Filter By CMC");
-                Console.WriteLine("6 - Display Prices");
-                Console.WriteLine("7 - Exit");
+                Console.WriteLine("6 - Filter By Keyword");
+                Console.WriteLine("7 - Display Prices");
+                Console.WriteLine("8 - Exit");
                 selection = Console.ReadLine();
-                if(Regex.IsMatch(selection,@"^[1-7]$"))
+                if(Regex.IsMatch(selection,@"^[1-8]$"))
                 {
                     
-                    if(Convert.ToInt32(selection) == 7)
+                    if(Convert.ToInt32(selection) == 8)
                     {
                         break;
                     }
