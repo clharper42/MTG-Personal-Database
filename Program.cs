@@ -130,17 +130,16 @@ namespace MTGRares
                 }
             }
 
-            System.IO.File.WriteAllText(@args[0],string.Empty);
-            System.IO.File.WriteAllText(@args[1],string.Empty);
-            using (var writer = new StreamWriter(args[0]))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-            {
-                csv.WriteRecords(allcards);
-            }
+            // System.IO.File.WriteAllText(@args[0],string.Empty);
+            // System.IO.File.WriteAllText(@args[1],string.Empty);
+            // using (var writer = new StreamWriter(args[0]))
+            // using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            // {
+            //     csv.WriteRecords(allcards);
+            // }
  
             ProgFunctions.Allcards = allcards;
-     
-            //Work on interactions. Filter by keywords? CMC and typeline dispaly together? Search by card color other than idenity. Price interaction. Search by id displays more information about card
+            //Work on interactions. Make list(s), only through ID or search also? ? CMC and typeline dispaly together? Search by card color other than idenity. Search by id displays more information about card. Check on 'the list' cards
             Console.WriteLine("Database Loaded");
             Console.WriteLine("-----");
             string selection;
@@ -154,12 +153,13 @@ namespace MTGRares
                 Console.WriteLine("5 - Filter By CMC");
                 Console.WriteLine("6 - Filter By Keyword");
                 Console.WriteLine("7 - Display Prices");
-                Console.WriteLine("8 - Exit");
+                Console.WriteLine("8 - Remove Card");
+                Console.WriteLine("9 - Exit");
                 selection = Console.ReadLine();
-                if(Regex.IsMatch(selection,@"^[1-8]$"))
+                if(Regex.IsMatch(selection,@"^[1-9]$"))
                 {
                     
-                    if(Convert.ToInt32(selection) == 8)
+                    if(Convert.ToInt32(selection) == 9)
                     {
                         break;
                     }
@@ -170,6 +170,14 @@ namespace MTGRares
                 }
                 Console.Clear();
 
+            }
+
+            System.IO.File.WriteAllText(@args[0],string.Empty);
+            System.IO.File.WriteAllText(@args[1],string.Empty);
+            using (var writer = new StreamWriter(args[0]))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(allcards);
             }
         }
     }
