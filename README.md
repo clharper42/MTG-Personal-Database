@@ -11,6 +11,8 @@ Once the program has gathered information from Scryfall the program updates a cs
 
 Set - Collector Number - Printing(Normal/Foil) is the unique identifier for a card 
 
+Some cards may have issues being entered due to TCGPlayer and Scryfall having different ways of identifying cards. Fixing when I notice a discrepancy
+
 [Example of features as of first commit](https://streamable.com/60due7)
 
 [Example of type line features](https://streamable.com/asxu4h)
