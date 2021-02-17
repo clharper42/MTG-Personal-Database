@@ -22,3 +22,5 @@ Some cards may have issues being entered due to TCGPlayer and Scryfall having di
 [Example of price feature](https://streamable.com/3lgkhm)
 
 [Example of keyword features](https://streamable.com/is4wcl)
+
+[Example of remove card feature](https://streamable.com/cip868)
