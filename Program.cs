@@ -129,14 +129,6 @@ namespace MTGRares
                     allcards[i].Printing = "Normal";
                 }
             }
-
-            // System.IO.File.WriteAllText(@args[0],string.Empty);
-            // System.IO.File.WriteAllText(@args[1],string.Empty);
-            // using (var writer = new StreamWriter(args[0]))
-            // using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-            // {
-            //     csv.WriteRecords(allcards);
-            // }
  
             ProgFunctions.Allcards = allcards;
             //Work on interactions. Make list(s), only through ID or search also? ? CMC and typeline dispaly together? Search by card color other than idenity. Search by id displays more information about card. Check on 'the list' cards
