@@ -6,11 +6,51 @@ namespace MTGRares {
         public static List<Card> Allcards {get; set;}
         private static void RemoveCard (int index)
         {
-            //keep track of when card is removed so sep functions can run again, check if amount of card is one or more
-            //create array of the list<string> and clear them and add them to the null checks
-            //cardprice seprate style from others
-            //enter id, search for id options
             Console.Clear();
+            bool inlist = false;
+            string selection = "";
+            List<CardList> AffectedLists = new List<CardList>();
+            if(CardListFunctions.AllCardLists.Count > 0)
+            {
+                foreach(CardList cl in CardListFunctions.AllCardLists)
+                {
+                    if(cl.TheList.Contains(Allcards[index]) && cl.NumOfCard[cl.TheList.IndexOf(Allcards[index])] == Allcards[index].Amount)
+                    {
+                        AffectedLists.Add(cl);
+                        Console.WriteLine(cl.Name);
+                        inlist = true;
+                    }
+                }
+            }
+            if(inlist)
+            {
+                while(true)
+                {
+                    Console.WriteLine("Card Is In The Above List(s) and Will Be Affected. Do You Still Wish To Remove? (Y/N): ");
+                    selection = Console.ReadLine();
+                    if(selection.ToLower().Equals("y"))
+                    {
+                        Console.Clear();
+                        break;
+                    }
+                    else if(selection.ToLower().Equals("n"))
+                    {
+                        return;
+                    }
+                    Console.Clear();
+                }
+
+                foreach(CardList cl in AffectedLists)
+                {
+                    cl.RemoveByCard(Allcards[index]);
+                }
+
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Proceed:");
+                Console.ReadLine();  
+            }
+
+
             if(Allcards[index].Amount > 1)
             {
                 Allcards[index].Amount = Allcards[index].Amount - 1;
@@ -46,26 +86,9 @@ namespace MTGRares {
                     {
                         if(Convert.ToInt32(selection) == 1)
                         {
-                            string decs;
-                            while(true)
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Exact search? (Y/N)");
-                                decs = Console.ReadLine().ToLower();
-                                Console.Clear();
-                                if("y".Equals(decs))
-                                {
-                                    Console.WriteLine("Enter Card Name:");
-                                    CardSearchFunctions.CardSearch(Console.ReadLine(),true);
-                                    break;
-                                }
-                                else if("n".Equals(decs))
-                                {
-                                    Console.WriteLine("Enter Card Name:");
-                                    CardSearchFunctions.CardSearch(Console.ReadLine(),false);
-                                    break;
-                                }
-                            }
+                            Console.Clear();
+                            Console.WriteLine("Enter Card Name:");
+                            CardSearchFunctions.CardSearch(Console.ReadLine());
                         }
                         else if(Convert.ToInt32(selection) == 2)
                         {
@@ -161,7 +184,7 @@ namespace MTGRares {
                     selection = Console.ReadLine();
                     if(Regex.IsMatch(selection,@"^[1-5]$"))
                     {
-                        if(SeprateFunctions.Types is null) //SepedCardsByType
+                        if(SeprateFunctions.Types.Count == 0) //SepedCardsByType
                         {
                             SeprateFunctions.SepByTypeLine();
                         }
@@ -280,7 +303,7 @@ namespace MTGRares {
                     selection = Console.ReadLine();
                     if(Regex.IsMatch(selection,@"^[1-3]$"))
                     {
-                        if(SeprateFunctions.Cmcs is null) //SepedCardsByCmcs
+                        if(SeprateFunctions.Cmcs.Count == 0) //SepedCardsByCmcs
                         {
                             SeprateFunctions.SepByCMC();
                         }
@@ -372,7 +395,7 @@ namespace MTGRares {
                     selection = Console.ReadLine();
                     if(Regex.IsMatch(selection,@"^[1-3]$"))
                     {
-                        if(SeprateFunctions.Keywords is null) //SepedCardsByKeywords
+                        if(SeprateFunctions.Keywords.Count == 0) //SepedCardsByKeywords
                         {
                             SeprateFunctions.SepByKeyword();
                         }
@@ -499,26 +522,9 @@ namespace MTGRares {
                         }
                         else if(Convert.ToInt32(selection) == 2)
                         {
-                            string decs;
-                            while(true)
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Exact search? (Y/N)");
-                                decs = Console.ReadLine().ToLower();
-                                Console.Clear();
-                                if("y".Equals(decs))
-                                {
-                                    Console.WriteLine("Enter Card Name:");
-                                    CardSearchFunctions.CardSearch(Console.ReadLine(),true);
-                                    break;
-                                }
-                                else if("n".Equals(decs))
-                                {
-                                    Console.WriteLine("Enter Card Name:");
-                                    CardSearchFunctions.CardSearch(Console.ReadLine(),false);
-                                    break;
-                                }
-                            }
+                            Console.Clear();
+                            Console.WriteLine("Enter Card Name:");
+                            CardSearchFunctions.CardSearch(Console.ReadLine());
                         }
                         else
                         {

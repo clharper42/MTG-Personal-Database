@@ -132,6 +132,10 @@ namespace MTGRares
  
             ProgFunctions.Allcards = allcards;
             //Work on interactions. Make list(s), only through ID or search also? ? CMC and typeline dispaly together? Search by card color other than idenity. Search by id displays more information about card. Check on 'the list' cards
+            //make lists, has name and description. add to. display. print to file. read in file
+            //remove function checks lists (Ask if it is okay to remove card if in list)
+            //loading in list checks to see if each card has been removed
+            //adding to a list checks num of copies????
             Console.WriteLine("Database Loaded");
             Console.WriteLine("-----");
             string selection;

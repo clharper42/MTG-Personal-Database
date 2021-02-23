@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace MTGRares {
     static class PriceFunctions{
-        public static List<Card> Allcardsprice {get; private set;}
+        public static List<Card> Allcardsprice {get; private set;} = new List<Card>();
         private static void SortByPrice()
         {
             Allcardsprice = new List<Card>(ProgFunctions.Allcards);
@@ -31,7 +31,7 @@ namespace MTGRares {
         }
         public static void CardsByPrice()
         {
-            if(Allcardsprice is null)
+            if(Allcardsprice.Count == 0)
             {
                 SortByPrice();
             }
@@ -62,7 +62,7 @@ namespace MTGRares {
         }
         public static void Reset()
         {
-            Allcardsprice = null;
+            Allcardsprice.Clear();
         }        
     }
 }

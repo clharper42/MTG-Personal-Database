@@ -8,7 +8,7 @@ namespace MTGRares {
             //'C' for colorless
             bool notinset = false;
             bool nocards = true;
-            if(SeprateFunctions.Colorids is null){
+            if(SeprateFunctions.Colorids.Count == 0){
                 SeprateFunctions.SepByColorId(false);
             }
             Console.Clear();
@@ -70,7 +70,7 @@ namespace MTGRares {
         {
             bool match = false;
             bool printed = false;
-            if(SeprateFunctions.Colorids is null){
+            if(SeprateFunctions.Colorids.Count == 0){
                 SeprateFunctions.SepByColorId(false);
             }
             Console.Clear();

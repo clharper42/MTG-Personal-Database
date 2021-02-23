@@ -3,21 +3,19 @@ using System.Collections.Generic;
 
 namespace MTGRares {
     static class SeprateFunctions {
-        public static List<string> Colorids {get; private set;}
-        public static List<List<Card>> SepedCardsByColorId {get; private set;}
-        public static List<List<String>> Types {get; private set;}
-        public static List<List<String>> Subtypes {get; private set;}
-        public static List<List<String>> Cmcs {get; private set;}
-        public static List<List<String>> Keywords {get; private set;}
-        public static List<List<List<Card>>> SepedCardsByType {get; private set;}
-        public static List<List<List<Card>>> SepedCardsBySubtype {get; private set;}
-        public static List<List<List<Card>>> SepedCardsByCmcs {get; private set;}
-        public static List<List<List<Card>>> SepedCardsByKeywords{get; private set;}
+        public static List<string> Colorids {get; private set;} = new List<string>();
+        public static List<List<Card>> SepedCardsByColorId {get; private set;} = new List<List<Card>>();
+        public static List<List<String>> Types {get; private set;} = new List<List<string>>();  // color - type
+        public static List<List<String>> Subtypes {get; private set;} = new List<List<string>>();
+        public static List<List<String>> Cmcs {get; private set;} = new List<List<string>>(); // color - cmc
+        public static List<List<String>> Keywords {get; private set;} = new List<List<string>>(); // color - keyword
+        public static List<List<List<Card>>> SepedCardsByType {get; private set;} = new List<List<List<Card>>>(); // color - type - card
+        public static List<List<List<Card>>> SepedCardsBySubtype {get; private set;} = new List<List<List<Card>>>();
+        public static List<List<List<Card>>> SepedCardsByCmcs {get; private set;} = new List<List<List<Card>>>(); // color - cmc - card
+        public static List<List<List<Card>>> SepedCardsByKeywords{get; private set;} = new List<List<List<Card>>>(); // color - keyword - card
         public static void SepByColorId(bool showcards){
-                if(Colorids is null)
+                if(Colorids.Count == 0)
                 {
-                    Colorids = new List<string>();
-                    SepedCardsByColorId = new List<List<Card>>();
 
                     Colorids.Add("C"); // C for colorless
                     SepedCardsByColorId.Add( new List<Card>());
@@ -69,11 +67,7 @@ namespace MTGRares {
 
         public static void SepByTypeLine()
         {
-            Types = new List<List<String>>(); // color - type
-            Subtypes = new List<List<String>>();
-            SepedCardsByType = new List<List<List<Card>>>(); // color - type - card
-            SepedCardsBySubtype = new List<List<List<Card>>>();
-            if(Colorids is null)
+            if(Colorids.Count == 0)
             {
                 SepByColorId(false);
             }
@@ -172,9 +166,7 @@ namespace MTGRares {
 
         public static void SepByCMC()
         {
-            Cmcs = new List<List<string>>(); // color - cmc
-            SepedCardsByCmcs = new List<List<List<Card>>>(); // color - cmc - card
-            if(Colorids is null)
+            if(Colorids.Count == 0)
             {
                 SepByColorId(false);
             }
@@ -207,9 +199,7 @@ namespace MTGRares {
         }
         public static void SepByKeyword()
         {
-            Keywords = new List<List<string>>();  // color - keyword
-            SepedCardsByKeywords = new List<List<List<Card>>>(); // color - keyword - card
-            if(Colorids is null)
+            if(Colorids.Count == 0)
             {
                 SepByColorId(false);
             }
@@ -238,11 +228,11 @@ namespace MTGRares {
         }
         public static void Reset()
         {
-            Colorids = null;
-            Types = null;
-            Subtypes = null;
-            Cmcs = null;
-            Keywords = null; 
+            Colorids.Clear();
+            Types.Clear();
+            Subtypes.Clear();
+            Cmcs.Clear();
+            Keywords.Clear(); 
         }        
     }
 }

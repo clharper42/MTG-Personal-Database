@@ -4,8 +4,29 @@ using System.Text.RegularExpressions;
 namespace MTGRares {
     
     static class CardSearchFunctions {
-        public static void CardSearch(string cardname, bool isexact) {
+        public static void CardSearch(string cardname) {
             Console.Clear();
+
+            bool isexact;
+            string decs;
+            while(true)
+            {
+                Console.Clear();
+                Console.WriteLine("Exact search? (Y/N)");
+                decs = Console.ReadLine().ToLower();
+                Console.Clear();
+                if("y".Equals(decs))
+                {
+                    isexact = true;
+                    break;
+                }
+                else if("n".Equals(decs))
+                {
+                    isexact = false;
+                    break;
+                }
+            }
+
             bool found = false;
             if(isexact)
             {
