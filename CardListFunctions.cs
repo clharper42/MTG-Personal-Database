@@ -13,9 +13,10 @@ namespace MTGRares {
             while(true)
             {
                 Console.Clear();
+                Console.WriteLine("50 Character Limit");
                 Console.WriteLine("Enter List Name:");
                 name = Console.ReadLine();
-                if(name.Length > 0)
+                if(name.Length > 0 && name.Length < 50 && Regex.IsMatch(name + ".txt", @"^[a-zA-Z0-9](?:[a-zA-Z0-9 ._-]*[a-zA-Z0-9])?\.[a-zA-Z0-9_-]+$"))
                 {
                     break;
                 }
@@ -24,9 +25,10 @@ namespace MTGRares {
             while(true)
             {
                 Console.Clear();
+                Console.WriteLine("50 Character Limit");
                 Console.WriteLine("Enter List Description:");
                 desc = Console.ReadLine();
-                if(desc.Length > 0)
+                if(desc.Length > 0 && name.Length < 50)
                 {
                     break;
                 }
@@ -90,7 +92,6 @@ namespace MTGRares {
         public static void PrintCardListToFile() {
             CardList thelist = GetCardList();
             thelist.PrintToFile();
-            //add feature
         }        
     }
 }

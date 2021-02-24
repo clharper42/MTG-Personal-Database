@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.IO;
 namespace MTGRares {
     class CardList {
         public string Name {get; private set;}
@@ -116,9 +117,34 @@ namespace MTGRares {
                 }
             }
 
+            string docpath = Environment.CurrentDirectory;
+
             if("1".Equals(selection))
             {
-
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + ".txt"),false))
+                {
+                    outputFile.WriteLine("Name: " + Name);
+                    outputFile.WriteLine("");
+                    outputFile.WriteLine("Description" + Description);
+                    outputFile.WriteLine("");
+                    outputFile.WriteLine("");
+                    for(int i = 0; i < TheList.Count; i++)
+                    {
+                        outputFile.WriteLine(NumOfCard[i] + "x " + TheList[i].Special_name);
+                    }
+                }
+            }
+            else
+            {
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + "Load.txt"),false))
+                {
+                    outputFile.WriteLine(Name);
+                    outputFile.WriteLine(Description);
+                    for(int i = 0; i < TheList.Count; i++)
+                    {
+                        outputFile.WriteLine(TheList[i].Set + TheList[i].Collector_number + TheList[i].Printing + NumOfCard[i]);
+                    }
+                }                
             }
         }
 
@@ -166,7 +192,7 @@ namespace MTGRares {
                     break;
                 }                  
             }
-            
+
             Console.WriteLine(" ");
             Console.WriteLine("Enter Any Key To Exit:");
             Console.ReadLine();                       
