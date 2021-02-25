@@ -17,7 +17,7 @@ namespace MTGRares {
                     if(cl.TheList.Contains(Allcards[index]) && cl.NumOfCard[cl.TheList.IndexOf(Allcards[index])] == Allcards[index].Amount)
                     {
                         AffectedLists.Add(cl);
-                        Console.WriteLine(cl.Name);
+                        Console.WriteLine("- " + cl.Name);
                         inlist = true;
                     }
                 }
@@ -50,7 +50,7 @@ namespace MTGRares {
                 Console.ReadLine();  
             }
 
-
+            Console.Clear();
             if(Allcards[index].Amount > 1)
             {
                 Allcards[index].Amount = Allcards[index].Amount - 1;
@@ -489,6 +489,54 @@ namespace MTGRares {
                 PriceFunctions.CardsByPrice();
             }
             else if(choice == 8)
+            {
+                while(true)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Select List Option:");
+                    Console.WriteLine("1 - Create List");
+                    Console.WriteLine("2 - Dispaly List");
+                    Console.WriteLine("3 - Add To List");
+                    Console.WriteLine("4 - Remove From List");
+                    Console.WriteLine("5 - Remove List");
+                    Console.WriteLine("6 - Print List To File");
+                    Console.WriteLine("7 - Exit");
+                    selection = Console.ReadLine();
+                    if(Regex.IsMatch(selection,@"^[1-7]$"))
+                    {
+                        if(Convert.ToInt32(selection) == 1)
+                        {
+                            CardListFunctions.CreateCardList();
+                        }
+                        else if(Convert.ToInt32(selection) == 2)
+                        {
+                            CardListFunctions.DisplayCardList();
+                        }
+                        else if(Convert.ToInt32(selection) == 3)
+                        {
+                            CardListFunctions.AddToCardList();
+                        }
+                        else if(Convert.ToInt32(selection) == 4)
+                        {
+                            CardListFunctions.RemoveFromCardList();
+                        }
+                        else if(Convert.ToInt32(selection) == 5)
+                        {
+                            CardListFunctions.RemoveCardList();
+                        }
+                        else if(Convert.ToInt32(selection) == 6)
+                        {
+                            CardListFunctions.PrintCardListToFile();
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                }
+            }
+            else if(choice == 9)
             {
                 while(true)
                 {

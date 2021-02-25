@@ -35,6 +35,11 @@ namespace MTGRares {
             }
 
            AllCardLists.Add(new CardList(name,desc));
+           Console.Clear();
+           Console.WriteLine("List Created");
+           Console.WriteLine(" ");
+           Console.WriteLine("Enter Any Key To Exit:");
+           Console.ReadLine();
         }
         public static CardList GetCardList() {
             Console.Clear();
@@ -60,28 +65,58 @@ namespace MTGRares {
             return AllCardLists[Convert.ToInt32(index) - 1];
         }
         public static void AddToCardList() {
+            if(AllCardLists.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("No Lists Available");
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();
+                return;
+            }
             CardList thelist = GetCardList();
             thelist.Add();                      
         }
         public static void DisplayCardList() {
-
+            if(AllCardLists.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("No Lists Available");
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();
+                return;
+            }
             CardList thelist = GetCardList();
             thelist.Display();
         }
 
-        public static void PrintFileCardList() {
-
-            CardList thelist = GetCardList();
-            thelist.PrintToFile();
-        }
-
         public static void RemoveFromCardList() {
+            if(AllCardLists.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("No Lists Available");
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();
+                return;
+            }            
             CardList thelist = GetCardList();
             thelist.Remove();
         }
 
         public static void RemoveCardList() {
+            if(AllCardLists.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("No Lists Available");
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();
+                return;
+            }            
             CardList thelist = GetCardList();
+            Console.Clear();
             Console.WriteLine(thelist.Name + " Was Removed");
             AllCardLists.Remove(thelist);
             Console.WriteLine(" ");
@@ -90,6 +125,15 @@ namespace MTGRares {
         }
 
         public static void PrintCardListToFile() {
+            if(AllCardLists.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("No Lists Available");
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();
+                return;
+            }            
             CardList thelist = GetCardList();
             thelist.PrintToFile();
         }        

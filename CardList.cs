@@ -15,7 +15,7 @@ namespace MTGRares {
             NumOfCard = new List<int>();
         }
 
-        public void Add()
+        public void Add() //NEEDS TO CHECK IF CARD IS ALREADY IN LIST
         {
             string selection;
             while(true)
@@ -45,18 +45,43 @@ namespace MTGRares {
                             {
                                 Card card = ProgFunctions.Allcards[Convert.ToInt32(index)];
                                 string numof;
+                                int numofalready = 0;
                                 while(true)
                                 {
                                     Console.Clear();
+                                    if(TheList.Contains(card))
+                                    {
+                                        Console.WriteLine(NumOfCard[TheList.IndexOf(card)] +"x " + card.Special_name + " Already In list");
+                                        numofalready = NumOfCard[TheList.IndexOf(card)];
+                                        Console.WriteLine(" ");
+                                    }
+                                    Console.WriteLine("Total Of " + card.Amount + " " + card.Special_name + " In Collection");
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine(" - Enter B To Back Out - ");
                                     Console.WriteLine("Enter Amout Of " + card.Special_name + " To Add:");
                                     numof = Console.ReadLine();
-                                    if(Regex.IsMatch(numof, @"^[0-9]+$") && Convert.ToInt32(numof) > 0 && Convert.ToInt32(numof) <= card.Amount)
+                                    if(Regex.IsMatch(numof, @"^[0-9]+$") && Convert.ToInt32(numof) > 0 && Convert.ToInt32(numof) <= card.Amount && Convert.ToInt32(numof) + numofalready <= card.Amount)
                                     {
                                         NumOfCard.Add(Convert.ToInt32(numof));
+                                        TheList.Add(card);
+                                        break;
+                                    }
+                                    else if("b".Equals(numof.ToLower()))
+                                    {
                                         break;
                                     }
                                 }
-                                TheList.Add(card);                                
+
+                                if("b".Equals(numof.ToLower()))
+                                {
+                                    break;
+                                }
+
+                                Console.Clear();
+                                Console.WriteLine("Card Added");
+                                Console.WriteLine(" ");
+                                Console.WriteLine("Enter Any Key To Continue:");
+                                Console.ReadLine();                                 
                                 break;
                             }
                         }
@@ -78,7 +103,7 @@ namespace MTGRares {
         public void Display()
         {
             Console.Clear();
-            Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+            Console.WriteLine("NAME - SET - PRINTING - AMOUNT IN LIST - CARD DB ID");
             foreach(Card card in TheList)
             {
                 Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + NumOfCard[TheList.IndexOf(card)] + " " + ProgFunctions.Allcards.IndexOf(card));
@@ -91,17 +116,16 @@ namespace MTGRares {
 
         private void DisplayWithID()
         {
-            Console.WriteLine("NAME - SET - PRINTING - AMOUNT - LIST ID");
+            Console.WriteLine("NAME - SET - PRINTING - AMOUNT IN LIST - LIST ID");
             foreach(Card card in TheList)
             {
                 Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + NumOfCard[TheList.IndexOf(card)] + " " + TheList.IndexOf(card));
-            }         
+            }
+            Console.WriteLine(" ");         
         }
 
         public void PrintToFile()
         {
-            //add feature
-            //https://docs.microsoft.com/en-us/dotnet/standard/io/how-to-write-text-to-a-file
             string selection;
             //print nonloadable, pint loadable
             while(true)
@@ -110,10 +134,15 @@ namespace MTGRares {
                 Console.WriteLine("Select Print Option:");
                 Console.WriteLine("1 - Print Normal File");
                 Console.WriteLine("2 - Print Loadable File");
+                Console.WriteLine("3 - Exit");
                 selection = Console.ReadLine();
                 if("1".Equals(selection) || "2".Equals(selection))
                 {
                     break;
+                }
+                else if("3".Equals(selection))
+                {
+                    return;
                 }
             }
 
@@ -125,7 +154,7 @@ namespace MTGRares {
                 {
                     outputFile.WriteLine("Name: " + Name);
                     outputFile.WriteLine("");
-                    outputFile.WriteLine("Description" + Description);
+                    outputFile.WriteLine("Description: " + Description);
                     outputFile.WriteLine("");
                     outputFile.WriteLine("");
                     for(int i = 0; i < TheList.Count; i++)
@@ -142,10 +171,16 @@ namespace MTGRares {
                     outputFile.WriteLine(Description);
                     for(int i = 0; i < TheList.Count; i++)
                     {
-                        outputFile.WriteLine(TheList[i].Set + TheList[i].Collector_number + TheList[i].Printing + NumOfCard[i]);
+                        outputFile.WriteLine(TheList[i].Set + " " + TheList[i].Collector_number  + " " + TheList[i].Printing  + " " + NumOfCard[i]);
                     }
                 }                
             }
+
+            Console.Clear();
+            Console.WriteLine("List Pinted");
+            Console.WriteLine(" ");
+            Console.WriteLine("Enter Any Key To Exit:");
+            Console.ReadLine();  
         }
 
         public void RemoveByCard(Card card)
@@ -156,7 +191,7 @@ namespace MTGRares {
                 if(NumOfCard[TheList.IndexOf(card)] > 1)
                 {
                     NumOfCard[TheList.IndexOf(card)] = NumOfCard[TheList.IndexOf(card)] - 1;
-                    Console.WriteLine("Amount In List " + Name + " is now " + NumOfCard[TheList.IndexOf(card)]);
+                    Console.WriteLine("Amount In List " + Name + " Is Now " + NumOfCard[TheList.IndexOf(card)]);
                 }
                 else
                 {
@@ -189,13 +224,13 @@ namespace MTGRares {
                 else if(Regex.IsMatch(index, @"^[0-9]+$") && Convert.ToInt32(index) >= 0 && Convert.ToInt32(index) < TheList.Count)
                 {
                     RemoveByCard(TheList[Convert.ToInt32(index)]);
-                    break;
+                    Console.Clear();
+                    Console.WriteLine("Card Removed");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Enter Any Key To Continue:");
+                    Console.ReadLine(); 
                 }                  
-            }
-
-            Console.WriteLine(" ");
-            Console.WriteLine("Enter Any Key To Exit:");
-            Console.ReadLine();                       
+            }                      
         }
 
     }

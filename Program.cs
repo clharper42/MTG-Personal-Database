@@ -149,13 +149,14 @@ namespace MTGRares
                 Console.WriteLine("5 - Filter By CMC");
                 Console.WriteLine("6 - Filter By Keyword");
                 Console.WriteLine("7 - Display Prices");
-                Console.WriteLine("8 - Remove Card");
-                Console.WriteLine("9 - Exit");
+                Console.WriteLine("8 - Manage Lists");
+                Console.WriteLine("9 - Remove Card");
+                Console.WriteLine("10 - Exit");
                 selection = Console.ReadLine();
-                if(Regex.IsMatch(selection,@"^[1-9]$"))
+                if(Regex.IsMatch(selection,@"10|[1-9]"))
                 {
                     
-                    if(Convert.ToInt32(selection) == 9)
+                    if(Convert.ToInt32(selection) == 10)
                     {
                         break;
                     }
