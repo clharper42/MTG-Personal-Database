@@ -132,55 +132,86 @@ namespace MTGRares {
             {
                 Console.Clear();
                 Console.WriteLine("Select Print Option:");
-                Console.WriteLine("1 - Print Normal File");
-                Console.WriteLine("2 - Print Loadable File");
-                Console.WriteLine("3 - Exit");
+                Console.WriteLine("1 - Print Deck Builder File (Archidekt/Tappedout)");
+                Console.WriteLine("2 - Print TCGPlayer File");
+                Console.WriteLine("3 - Print StarCity/CardKingdom File");
+                Console.WriteLine("4 - Print Loadable File");
+                Console.WriteLine("5 - Exit");
                 selection = Console.ReadLine();
-                if("1".Equals(selection) || "2".Equals(selection))
+                if(Regex.IsMatch(selection,@"^[1-5]$"))
                 {
-                    break;
-                }
-                else if("3".Equals(selection))
-                {
-                    return;
-                }
-            }
+                    string docpath = Environment.CurrentDirectory;
 
-            string docpath = Environment.CurrentDirectory;
-
-            if("1".Equals(selection))
-            {
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + ".txt"),false))
-                {
-                    outputFile.WriteLine("Name: " + Name);
-                    outputFile.WriteLine("");
-                    outputFile.WriteLine("Description: " + Description);
-                    outputFile.WriteLine("");
-                    outputFile.WriteLine("");
-                    for(int i = 0; i < TheList.Count; i++)
+                    if("1".Equals(selection))
                     {
-                        outputFile.WriteLine(NumOfCard[i] + "x " + TheList[i].Special_name);
+                        using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + "DeckBuild.txt"),false))
+                        {
+                            outputFile.WriteLine("Name: " + Name);
+                            outputFile.WriteLine("");
+                            outputFile.WriteLine("Description: " + Description);
+                            outputFile.WriteLine("");
+                            outputFile.WriteLine("");
+                            for(int i = 0; i < TheList.Count; i++)
+                            {
+                                outputFile.WriteLine(NumOfCard[i] + "x " + TheList[i].Name + " (" + TheList[i].Set +")");
+                            }
+                        }
                     }
-                }
-            }
-            else
-            {
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + "Load.txt"),false))
-                {
-                    outputFile.WriteLine(Name);
-                    outputFile.WriteLine(Description);
-                    for(int i = 0; i < TheList.Count; i++)
+                    else if("2".Equals(selection))
                     {
-                        outputFile.WriteLine(TheList[i].Set + " " + TheList[i].Collector_number  + " " + TheList[i].Printing  + " " + NumOfCard[i]);
+                        using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + "TCGPlayer.txt"),false))
+                        {
+                            outputFile.WriteLine("Name: " + Name);
+                            outputFile.WriteLine("");
+                            outputFile.WriteLine("Description: " + Description);
+                            outputFile.WriteLine("");
+                            outputFile.WriteLine("");
+                            for(int i = 0; i < TheList.Count; i++)
+                            {
+                                outputFile.WriteLine(NumOfCard[i] + " " + TheList[i].Name + " [" + TheList[i].Set +"]");
+                            }
+                        }
                     }
-                }                
-            }
-
-            Console.Clear();
-            Console.WriteLine("List Pinted");
-            Console.WriteLine(" ");
-            Console.WriteLine("Enter Any Key To Exit:");
-            Console.ReadLine();  
+                    else if("3".Equals(selection))
+                    {
+                        using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + "StarKingdom.txt"),false))
+                        {
+                            outputFile.WriteLine("Name: " + Name);
+                            outputFile.WriteLine("");
+                            outputFile.WriteLine("Description: " + Description);
+                            outputFile.WriteLine("");
+                            outputFile.WriteLine("");
+                            for(int i = 0; i < TheList.Count; i++)
+                            {
+                                outputFile.WriteLine(NumOfCard[i] + " x " + TheList[i].Name);
+                            }
+                        }                
+                    }          
+                    else if("4".Equals(selection))
+                    {
+                        using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + "Load.txt"),false))
+                        {
+                            outputFile.WriteLine(Name);
+                            outputFile.WriteLine(Description);
+                            for(int i = 0; i < TheList.Count; i++)
+                            {
+                                outputFile.WriteLine(TheList[i].Set + " " + TheList[i].Collector_number  + " " + TheList[i].Printing  + " " + NumOfCard[i]);
+                            }
+                        }                
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        return;
+                    }
+        
+                    Console.Clear();
+                    Console.WriteLine("List Pinted");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Enter Any Key To Exit:");
+                    Console.ReadLine();
+                }
+            } 
         }
 
         public void RemoveByCard(Card card)
