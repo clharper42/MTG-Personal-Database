@@ -3,8 +3,38 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 namespace MTGRares {
     static class DisplayFunctions{
-        public static void CardsByColor(string colors, bool containsonly)
+        public static void CardsByColor()
         {
+            string colors;
+            bool containsonly;
+            while(true)
+            {
+                Console.Clear();
+                Console.WriteLine("Enter Colors (W - White, U - Blue, B - Black, R - Red, G - Green, C - Colorless):");
+                colors = Console.ReadLine();
+                if(Regex.IsMatch(colors, @"^[WUBRGCwubrgc]+$"))
+                {
+                    string decs;
+                    while(true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Are Only These Colors? (Y/N):");
+                        decs = Console.ReadLine();
+                        if("y".Equals(decs.ToLower()))
+                        {
+                            containsonly = true;
+                            break;
+                        }
+                        else if("n".Equals(decs.ToLower()))
+                        {
+                            containsonly = false;
+                            break;
+                        }                                            
+                    }
+                    break;
+                }
+            }
+
             //'C' for colorless
             bool notinset = false;
             bool nocards = true;
@@ -66,8 +96,20 @@ namespace MTGRares {
             Console.ReadLine(); 
             
         }
-        public static void CardsByText(string expr) //change to allow color selection like other cardsby
+        public static void CardsByText() //change to allow color selection like other cardsby
         {
+            string expr;
+            while(true)
+            {
+                Console.Clear();
+                Console.WriteLine("Enter Text(Cards Filterd By Color Idenity):");
+                expr = Console.ReadLine();
+                if(expr.Length > 0)
+                {
+                    break;
+                }
+            }
+
             bool match = false;
             bool printed = false;
             if(SeprateFunctions.Colorids.Count == 0){

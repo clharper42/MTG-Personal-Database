@@ -4,8 +4,27 @@ using System.Text.RegularExpressions;
 namespace MTGRares {
     static class ProgFunctions {
         public static List<Card> Allcards {get; set;}
-        private static void RemoveCard (int index)
+        private static void RemoveCard ()
         {
+            string indexstr;
+            int index;
+            while(true)
+            {
+                Console.Clear();
+                Console.WriteLine(" - Enter B To Back Out - ");
+                Console.WriteLine("Enter ID: ");  
+                indexstr = Console.ReadLine();
+                if(indexstr.ToLower().Equals("b"))
+                {
+                    return;
+                }
+                else if(Regex.IsMatch(indexstr, @"^[0-9]+$") && Convert.ToInt32(indexstr) >= 0 && Convert.ToInt32(indexstr) < Allcards.Count)
+                {
+                    index = Convert.ToInt32(indexstr);
+                    break;
+                }
+            }
+
             Console.Clear();
             bool inlist = false;
             string selection = "";
@@ -105,17 +124,7 @@ namespace MTGRares {
             }
             else if(choice == 2)
             {
-                while(true)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Enter Text(Cards Filterd By Color Idenity):");
-                    selection = Console.ReadLine();
-                    if(selection.Length > 0)
-                    {
-                        break;
-                    }
-                }
-                DisplayFunctions.CardsByText(selection);   
+                DisplayFunctions.CardsByText();   
             }
             else if(choice == 3)
             {
@@ -135,33 +144,7 @@ namespace MTGRares {
                         }
                         else if(Convert.ToInt32(selection) == 2)
                         {
-                            while(true)
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Enter Colors (W - White, U - Blue, B - Black, R - Red, G - Green, C - Colorless):");
-                                selection = Console.ReadLine();
-                                if(Regex.IsMatch(selection, @"^[WUBRGCwubrgc]+$"))
-                                {
-                                    string decs;
-                                    while(true)
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine("Are Only These Colors? (Y/N):");
-                                        decs = Console.ReadLine();
-                                        if("y".Equals(decs.ToLower()))
-                                        {
-                                            DisplayFunctions.CardsByColor(selection,true);
-                                            break;
-                                        }
-                                        else if("n".Equals(decs.ToLower()))
-                                        {
-                                            DisplayFunctions.CardsByColor(selection,false);
-                                            break;
-                                        }                                            
-                                    }
-                                    break;
-                                }
-                            }
+                            DisplayFunctions.CardsByColor();
                         }
                         else
                         {
@@ -550,23 +533,7 @@ namespace MTGRares {
                     {
                         if(Convert.ToInt32(selection) == 1)
                         {
-                            string index;
-                            while(true)
-                            {
-                                Console.Clear();
-                                Console.WriteLine(" - Enter B To Back Out - ");
-                                Console.WriteLine("Enter ID: ");  
-                                index = Console.ReadLine();
-                                if(index.ToLower().Equals("b"))
-                                {
-                                    break;
-                                }
-                                else if(Regex.IsMatch(index, @"^[0-9]+$") && Convert.ToInt32(index) >= 0 && Convert.ToInt32(index) < Allcards.Count)
-                                {
-                                    RemoveCard(Convert.ToInt32(index));
-                                    break;
-                                }
-                            }
+                            RemoveCard();
                         }
                         else if(Convert.ToInt32(selection) == 2)
                         {
