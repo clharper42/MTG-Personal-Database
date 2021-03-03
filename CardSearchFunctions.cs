@@ -103,6 +103,7 @@ namespace MTGRares {
             {
                 Console.WriteLine("Card Name: " + ProgFunctions.Allcards[index].Special_name);
                 Console.WriteLine("Set: " + ProgFunctions.Allcards[index].Set_name);
+                Console.WriteLine("Printing: " + ProgFunctions.Allcards[index].Printing);
                 if(ProgFunctions.Allcards[index].Card_faces is null)
                 {
                     Console.WriteLine("Mana Cost: " + ProgFunctions.Allcards[index].Mana_cost);
