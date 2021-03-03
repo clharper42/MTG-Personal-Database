@@ -102,6 +102,7 @@ namespace MTGRares {
             if(index >= 0 && index < ProgFunctions.Allcards.Count)
             {
                 Console.WriteLine("Card Name: " + ProgFunctions.Allcards[index].Special_name);
+                Console.WriteLine("Set: " + ProgFunctions.Allcards[index].Set_name);
                 if(ProgFunctions.Allcards[index].Card_faces is null)
                 {
                     Console.WriteLine("Mana Cost: " + ProgFunctions.Allcards[index].Mana_cost);

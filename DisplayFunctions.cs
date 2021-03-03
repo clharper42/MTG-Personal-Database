@@ -135,7 +135,7 @@ namespace MTGRares {
                                     printed = true;
                                 }
                                 Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + ProgFunctions.Allcards.IndexOf(card));
-                                Console.WriteLine(card.Oracle_text);
+                                Console.WriteLine("Oracle Text: " + card.Oracle_text);
                                 Console.WriteLine("-----");
                             }
                         }
@@ -157,7 +157,7 @@ namespace MTGRares {
                                     printed = true;
                                 }                                    
                                 Console.WriteLine(cardface.Name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + ProgFunctions.Allcards.IndexOf(card));
-                                Console.WriteLine(cardface.Oracle_text);
+                                Console.WriteLine("Oracle Text: " + cardface.Oracle_text);
                                 Console.WriteLine("-----");
                             }
                         }
