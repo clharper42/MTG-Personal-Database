@@ -189,13 +189,14 @@ namespace MTGRares {
                     }          
                     else if("4".Equals(selection))
                     {
+                        //check if star in set number works on load
                         using (StreamWriter outputFile = new StreamWriter(Path.Combine(docpath, Name + "Load.txt"),false))
                         {
                             outputFile.WriteLine(Name);
                             outputFile.WriteLine(Description);
                             for(int i = 0; i < TheList.Count; i++)
                             {
-                                outputFile.WriteLine(TheList[i].Set + " " + TheList[i].Collector_number  + " " + TheList[i].Printing  + " " + NumOfCard[i]);
+                                outputFile.WriteLine(TheList[i].Name + " " + TheList[i].Set + " " + TheList[i].Collector_number  + " " + TheList[i].Printing  + " " + NumOfCard[i]);
                             }
                         }                
                     }

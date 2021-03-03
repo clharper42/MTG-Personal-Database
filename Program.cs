@@ -14,8 +14,20 @@ namespace MTGRares
     class Program
     {
         private const string URL = "https://api.scryfall.com/cards/collection";
-        static void Main(string[] args)
+        static void Main()
         {
+            string dbpath = Directory.GetCurrentDirectory() + "/Carddb.csv";
+            string tcgpath = Directory.GetCurrentDirectory() + "/TCGplayer.csv";
+
+            if(!File.Exists(dbpath) || !File.Exists(tcgpath))
+            {
+                Console.WriteLine("Mising Files");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+
+            string[] args = new string[]{dbpath, tcgpath};
+
             List<ExcelCard> carddb = new List<ExcelCard>(); // REF TO DB
             List<ExcelCard> tcgplayercards = new List<ExcelCard>();
             var csvTable = new DataTable();  

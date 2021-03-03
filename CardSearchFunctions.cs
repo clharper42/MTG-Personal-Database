@@ -101,8 +101,44 @@ namespace MTGRares {
             Console.Clear();
             if(index >= 0 && index < ProgFunctions.Allcards.Count)
             {
-                Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
-                Console.WriteLine(ProgFunctions.Allcards[index].Special_name + " " + ProgFunctions.Allcards[index].Set + " " + ProgFunctions.Allcards[index].Printing + " " + ProgFunctions.Allcards[index].Amount + " " + index);
+                Console.WriteLine("Card Name: " + ProgFunctions.Allcards[index].Special_name);
+                if(ProgFunctions.Allcards[index].Card_faces is null)
+                {
+                    Console.WriteLine("Mana Cost: " + ProgFunctions.Allcards[index].Mana_cost);
+                    Console.WriteLine("Type Line: " + ProgFunctions.Allcards[index].Type_line);
+                    Console.WriteLine("Oracle Text: " + ProgFunctions.Allcards[index].Oracle_text);
+                    if(!(ProgFunctions.Allcards[index].Power is null))
+                    {
+                        Console.WriteLine("Power: " + ProgFunctions.Allcards[index].Power);
+                        Console.WriteLine("Toughness: " + ProgFunctions.Allcards[index].Toughness);
+                    }
+                    if(!(ProgFunctions.Allcards[index].Loyalty is null))
+                    {
+                        Console.WriteLine("Loyalty: " + ProgFunctions.Allcards[index].Loyalty);
+                    }
+                }
+                else
+                {
+                    foreach(Cardface cardface in ProgFunctions.Allcards[index].Card_faces)
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Card Face Name: " + cardface.Name);
+                        Console.WriteLine("Mana Cost: " + cardface.Mana_cost);
+                        Console.WriteLine("Type Line: " + cardface.Type_line);
+                        Console.WriteLine("Oracle Text: " + cardface.Oracle_text);
+                        if(!(cardface.Power is null))
+                        {
+                            Console.WriteLine("Power: " + cardface.Power);
+                            Console.WriteLine("Toughness: " + cardface.Toughness);
+                        }
+                        if(!(cardface.Loyalty is null))
+                        {
+                            Console.WriteLine("Loyalty: " + cardface.Loyalty);
+                        }                   
+                    }
+                }
+                Console.WriteLine(" ");
+                Console.WriteLine("Scryfall Link: " + ProgFunctions.Allcards[index].Scryfall_uri);               
             }
             else
             {
