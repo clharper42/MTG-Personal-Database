@@ -483,9 +483,10 @@ namespace MTGRares {
                     Console.WriteLine("4 - Remove From List");
                     Console.WriteLine("5 - Remove List");
                     Console.WriteLine("6 - Print List To File");
-                    Console.WriteLine("7 - Exit");
+                    Console.WriteLine("7 - Load List From File");
+                    Console.WriteLine("8 - Exit");
                     selection = Console.ReadLine();
-                    if(Regex.IsMatch(selection,@"^[1-7]$"))
+                    if(Regex.IsMatch(selection,@"^[1-8]$"))
                     {
                         if(Convert.ToInt32(selection) == 1)
                         {
@@ -510,6 +511,10 @@ namespace MTGRares {
                         else if(Convert.ToInt32(selection) == 6)
                         {
                             CardListFunctions.PrintCardListToFile();
+                        }
+                        else if(Convert.ToInt32(selection) == 7)
+                        {
+                            CardListFunctions.LoadListFromFile();
                         }
                         else
                         {

@@ -100,6 +100,11 @@ namespace MTGRares {
             }
         }
 
+        public void AddFromLoad(Card card, int amount) {
+            TheList.Add(card);
+            NumOfCard.Add(amount);
+        }
+
         public void Display()
         {
             Console.Clear();
@@ -196,7 +201,7 @@ namespace MTGRares {
                             outputFile.WriteLine(Description);
                             for(int i = 0; i < TheList.Count; i++)
                             {
-                                outputFile.WriteLine(TheList[i].Name + " " + TheList[i].Set + " " + TheList[i].Collector_number  + " " + TheList[i].Printing  + " " + NumOfCard[i]);
+                                outputFile.WriteLine(TheList[i].Name + "_" + TheList[i].Set + "_" + TheList[i].Collector_number  + "_" + TheList[i].Printing  + "_" + NumOfCard[i]);
                             }
                         }                
                     }

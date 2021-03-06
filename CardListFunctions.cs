@@ -136,6 +136,183 @@ namespace MTGRares {
             }            
             CardList thelist = GetCardList();
             thelist.PrintToFile();
+        }
+
+        public static void LoadListFromFile() {
+            Console.Clear();
+            bool canload = false;
+            string filename;
+            string filepath;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Enter File Name:");
+                filename = Console.ReadLine();
+                filename = filename + ".txt";
+                filepath = System.IO.Directory.GetCurrentDirectory() + "\\" + filename;
+                if(System.IO.File.Exists(filepath))
+                {
+                    break;
+                }
+            }
+            Console.Clear();
+
+            string[] lines = System.IO.File.ReadAllLines(filepath);
+
+            CardList loadedlist = new CardList(lines[0],lines[1]);
+            for(int i = 2; i < lines.Length; i++)
+            {
+                string[] cardelements = lines[i].Split("_");
+                string cardname = cardelements[0];
+                string cardset = cardelements[1];
+                string cardcolnum = cardelements[2];
+                string cardprint = cardelements[3];
+                string cardnum = cardelements[4];
+                int min = 0;
+                int max = ProgFunctions.Allcards.Count - 1;
+                int index = 0;
+                bool found = false;
+                Card card = null;
+                while(min <= max)
+                {
+                    int mid = (min + max) / 2;
+                    if(cardname.Equals(ProgFunctions.Allcards[mid].Name)) {
+                        index = mid;
+                        if(cardset.Equals(ProgFunctions.Allcards[mid].Set) && cardcolnum.Equals(ProgFunctions.Allcards[mid].Collector_number) && cardprint.Equals(ProgFunctions.Allcards[mid].Printing))
+                        {
+                            card = ProgFunctions.Allcards[mid];
+                            found = true;
+                            break;
+                        }
+                        else
+                        {
+                            for(int j = index + 1; j < ProgFunctions.Allcards.Count; j++)
+                            {
+                                if(cardname.Equals(ProgFunctions.Allcards[j].Name))
+                                {
+                                    if(cardset.Equals(ProgFunctions.Allcards[j].Set) && cardcolnum.Equals(ProgFunctions.Allcards[j].Collector_number) && cardprint.Equals(ProgFunctions.Allcards[j].Printing))
+                                    {
+                                        card = ProgFunctions.Allcards[j];
+                                        found = true;
+                                        break;
+                                    }                                     
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            if(found)
+                            {
+                                break;
+                            }
+                            for(int j = index - 1; j >= 0; j--)
+                            {
+                                if(cardname.Equals(ProgFunctions.Allcards[j].Name))
+                                {
+                                    if(cardset.Equals(ProgFunctions.Allcards[j].Set) && cardcolnum.Equals(ProgFunctions.Allcards[j].Collector_number) && cardprint.Equals(ProgFunctions.Allcards[j].Printing))
+                                    {
+                                        card = ProgFunctions.Allcards[j];
+                                        found = true;
+                                        break;
+                                    }                                      
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    else if(cardname.CompareTo(ProgFunctions.Allcards[mid].Name) < 0)
+                    {
+                        max = mid - 1;
+                    }
+                    else
+                    {
+                        min = mid + 1;
+                    }
+                }
+
+                if(found)
+                {
+                    if(Convert.ToInt32(cardnum) > card.Amount)
+                    {
+                        //card in load is greater amount then card in db
+                        string selection;
+                        while(true)
+                        {
+                            Console.Clear();
+                            Console.WriteLine(card.Special_name + " Has More In The List" + "(" + cardnum + ")" + " Then In The Database(" + card.Amount + ")");
+                            Console.WriteLine("1 - Skip Loading Card");
+                            Console.WriteLine("2 - Cancel List Load");                            
+                            selection = Console.ReadLine();
+                            if(Regex.IsMatch(selection,@"^[1-2]$"))
+                            {
+                                if("1".Equals(selection))
+                                {
+                                    Console.Clear();
+                                    break;
+                                }
+                                else
+                                {
+                                    canload = true;
+                                    Console.Clear();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //card fine
+                        Console.WriteLine(card.Special_name + " Loaded");
+                        loadedlist.AddFromLoad(card,Convert.ToInt32(cardnum));
+                    }
+                }
+                else
+                {
+                    //card not in db
+                    string selection;
+                    while(true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(card.Special_name + " Is Not In The Database");
+                        Console.WriteLine("1 - Skip Loading Card");
+                        Console.WriteLine("2 - Cancel List Load");                            
+                        selection = Console.ReadLine();
+                        if(Regex.IsMatch(selection,@"^[1-2]$"))
+                        {
+                            if("1".Equals(selection))
+                            {
+                                Console.Clear();
+                                break;
+                            }
+                            else
+                            {
+                                canload = true;
+                                Console.Clear();
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if(canload)
+                {
+                    return;
+                }
+            }
+
+            AllCardLists.Add(loadedlist);
+            Console.WriteLine(" ");
+            Console.WriteLine("List Loaded");
+            Console.WriteLine(" ");
+            Console.WriteLine("Enter Any Key To Exit:");
+            Console.ReadLine(); 
+
+
         }        
     }
 }
