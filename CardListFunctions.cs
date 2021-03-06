@@ -146,8 +146,13 @@ namespace MTGRares {
             while (true)
             {
                 Console.Clear();
+                Console.WriteLine(" - Enter B To Back Out - ");
                 Console.WriteLine("Enter File Name:");
                 filename = Console.ReadLine();
+                if(filename.ToLower().Equals("b"))
+                {
+                    return;
+                }
                 filename = filename + ".txt";
                 filepath = System.IO.Directory.GetCurrentDirectory() + "\\" + filename;
                 if(System.IO.File.Exists(filepath))
