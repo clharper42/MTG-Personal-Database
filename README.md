@@ -24,3 +24,5 @@ Some cards may have issues being entered due to TCGPlayer and Scryfall having di
 [Example of keyword features](https://streamable.com/is4wcl)
 
 [Example of remove card feature](https://streamable.com/cip868)
+
+[Example of list features](https://streamable.com/018cpa)
