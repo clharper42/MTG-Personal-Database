@@ -473,6 +473,10 @@ namespace MTGRares {
             }
             else if(choice == 8)
             {
+                DisplayFunctions.DispalyAllCards();
+            }
+            else if(choice == 9)
+            {
                 while(true)
                 {
                     Console.Clear();
@@ -524,7 +528,7 @@ namespace MTGRares {
 
                 }
             }
-            else if(choice == 9)
+            else if(choice == 10)
             {
                 while(true)
                 {

@@ -173,6 +173,25 @@ namespace MTGRares {
             Console.WriteLine(" ");
             Console.WriteLine("Enter Any Key To Exit:");
             Console.ReadLine(); 
+        }
+
+        public static void DispalyAllCards() {
+            Console.Clear();
+            if( ProgFunctions.Allcards.Count == 0)
+            {
+                Console.WriteLine("No Cards In Database");
+                Console.WriteLine(" ");
+                Console.WriteLine("Enter Any Key To Exit:");
+                Console.ReadLine();
+            }
+            Console.WriteLine("NAME - SET - PRINTING - AMOUNT - ID");
+            foreach(Card card in ProgFunctions.Allcards)
+            {
+                Console.WriteLine(card.Special_name + " " + card.Set + " " + card.Printing + " " + card.Amount + " " + ProgFunctions.Allcards.IndexOf(card));
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine("Enter Any Key To Exit:");
+            Console.ReadLine();
         }    
     }
 }
