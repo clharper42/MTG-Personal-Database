@@ -64,6 +64,10 @@ namespace MTGRares
                 if(tcgplayercards[tcgplayercards.Count-1].Set.ToLower().Equals("10e") && tcgplayercards[tcgplayercards.Count-1].Printing.Equals("Foil"))
                 {
                     tcgplayercards[tcgplayercards.Count-1].Collector_number = tcgplayercards[tcgplayercards.Count-1].Collector_number + "★";
+                }
+                else if(tcgplayercards[tcgplayercards.Count-1].Set.ToLower().Equals("tlp"))
+                {
+                    tcgplayercards[tcgplayercards.Count-1].Set = "plist";
                 }              
             }
 
