@@ -154,10 +154,17 @@ namespace MTGRares {
                     return;
                 }
                 filename = filename + ".txt";
-                filepath = System.IO.Directory.GetCurrentDirectory() + "\\" + filename;
+                filepath = System.IO.Directory.GetCurrentDirectory() + "\\Files\\" + filename;
                 if(System.IO.File.Exists(filepath))
                 {
                     break;
+                }
+                else
+                {
+                    Console.WriteLine("File Does Not Exist In 'Files' Directory");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Enter Any Key To Exit:");
+                    Console.ReadLine();
                 }
             }
             Console.Clear();

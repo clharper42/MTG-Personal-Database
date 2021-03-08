@@ -145,7 +145,7 @@ namespace MTGRares {
                 selection = Console.ReadLine();
                 if(Regex.IsMatch(selection,@"^[1-5]$"))
                 {
-                    string docpath = Environment.CurrentDirectory;
+                    string docpath = Environment.CurrentDirectory + "\\Files";
 
                     if("1".Equals(selection))
                     {

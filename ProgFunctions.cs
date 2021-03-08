@@ -45,7 +45,7 @@ namespace MTGRares {
             {
                 while(true)
                 {
-                    Console.WriteLine("Card Is In The Above List(s) and Will Be Affected. Do You Still Wish To Remove? (Y/N): ");
+                    Console.WriteLine("Card Is In The Above List(s) And Will Be Affected. Do You Still Wish To Remove? (Y/N): ");
                     selection = Console.ReadLine();
                     if(selection.ToLower().Equals("y"))
                     {
