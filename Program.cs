@@ -29,7 +29,7 @@ namespace MTGRares
 
             if(!File.Exists(dbpath) || !File.Exists(tcgpath))
             {
-                Console.WriteLine("Mising Carddb.csv Or TCGplayer.csv In 'Files' Directory");
+                Console.WriteLine("Mising Carddb.csv and/or TCGplayer.csv In 'Files' Directory");
                 Console.ReadLine();
                 Environment.Exit(0);
             }
