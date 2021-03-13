@@ -13,6 +13,8 @@ Set - Collector Number - Printing(Normal/Foil) is the unique identifier for a ca
 
 Some cards may have issues being entered due to TCGPlayer and Scryfall having different ways of identifying cards. Fixing when I notice a discrepancy
 
+Non-english cards do not currently work
+
 [Example of features as of first commit](https://streamable.com/60due7)
 
 [Example of type line features](https://streamable.com/asxu4h)
@@ -26,3 +28,6 @@ Some cards may have issues being entered due to TCGPlayer and Scryfall having di
 [Example of remove card feature](https://streamable.com/cip868)
 
 [Example of list features](https://streamable.com/018cpa)
+
+<b><h3>To Use:</h3></b>
+Make sure in the directory where the application is you have a folder named "Files" with Carddb.csv and TCGplayer.csv inside. The TCGplayer file comes from the TCGplayer app and is used to read in new cards into the database. The Carddb file is where the card information is stored once you quit out of the applicaiton. If you want to have multiple databases simply save the carddb file in a diffrent directory and overwrite the carddb file in the "Files" folder with the desired database. Any lists created and printed will be stored in the "Files" folder.
