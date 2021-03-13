@@ -155,7 +155,6 @@ namespace MTGRares
             }
  
             ProgFunctions.Allcards = allcards;
-            //Work on interactions. Check on 'the list' cards
             Console.WriteLine("Database Loaded");
             Console.WriteLine("-----");
             string selection;
