@@ -143,7 +143,6 @@ namespace MTGRares
             {
                 allcards[i].Amount = carddb[i].Amount;
                 allcards[i].Special_name = carddb[i].Special_name;
-                // allcards[i].Card_num = carddb[i].Card_num;
                 if("Foil".Equals(carddb[i].Printing))
                 {
                     allcards[i].Printing = "Foil";
@@ -153,7 +152,7 @@ namespace MTGRares
                     allcards[i].Printing = "Normal";
                 }
             }
- 
+            //look into ASP.NET
             ProgFunctions.Allcards = allcards;
             Console.WriteLine("Database Loaded");
             Console.WriteLine("-----");
