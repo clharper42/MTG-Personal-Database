@@ -31,3 +31,5 @@ Non-english cards do not currently work
 
 <b><h3>To Use:</h3></b>
 Make sure in the directory where the application is you have a folder named "Files" with Carddb.csv and TCGplayer.csv inside. The TCGplayer file comes from the TCGplayer app and is used to read in new cards into the database. The Carddb file is where the card information is stored once you quit out of the applicaiton. If you want to have multiple databases simply save the carddb file in a diffrent directory and overwrite the carddb file in the "Files" folder with the desired database. Any lists created and printed will be stored in the "Files" folder.
+
+[Requires this "SDK 3.1.113" to run. May fix issues where application opens but nothing happens](https://dotnet.microsoft.com/download/dotnet/3.1)
