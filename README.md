@@ -5,7 +5,7 @@ First you scan cards using the TCGPlayer app as a way to speed up the process of
 
 Once the program has processed the cards it uses the information gathered to make a request to the [Scryfall API](https://scryfall.com/docs/api) to pull more information about the cards that the TCGPlayer file does not provide.
 
-With the infromation gathered from Scryfall the program provides features such as searching and filtering (features are being worked on).
+With the infromation gathered from Scryfall the program provides features such as searching, filtering and list creation.
 
 Once the program has gathered information from Scryfall the program updates a csv file with the cards' information for which it will pull from and update when the program is ran again.
 
@@ -17,11 +17,11 @@ Non-english cards do not currently work
 
 [Example of features as of first commit](https://streamable.com/60due7)
 
-[Example of type line features](https://streamable.com/asxu4h)
+[Example of type line features](https://streamable.com/pycuqo)
 
-[Example of CMC features](https://streamable.com/zphuo9)
+[Example of CMC features](https://streamable.com/k7pmxi)
 
-[Example of price feature](https://streamable.com/3lgkhm)
+[Example of price feature](https://streamable.com/h4kjka)
 
 [Example of keyword features](https://streamable.com/is4wcl)
 
