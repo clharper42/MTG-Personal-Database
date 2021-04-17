@@ -290,7 +290,7 @@ namespace MTGRares {
                     while(true)
                     {
                         Console.Clear();
-                        Console.WriteLine(card.Special_name + " Is Not In The Database");
+                        Console.WriteLine(cardname + " Is Not In The Database");
                         Console.WriteLine("1 - Skip Loading Card");
                         Console.WriteLine("2 - Cancel List Load");                            
                         selection = Console.ReadLine();

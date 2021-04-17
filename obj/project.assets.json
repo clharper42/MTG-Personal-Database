@@ -5289,31 +5289,37 @@
   },
   "packageFolders": {
     "C:\\Users\\Chris Harper\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Documents\\C#Projects\\MTGRares\\MTGRares.csproj",
+      "projectUniqueName": "D:\\Documents\\C#Projects\\MTGRares\\MTGRares.csproj",
       "projectName": "MTGRares",
-      "projectPath": "d:\\Documents\\C#Projects\\MTGRares\\MTGRares.csproj",
+      "projectPath": "D:\\Documents\\C#Projects\\MTGRares\\MTGRares.csproj",
       "packagesPath": "C:\\Users\\Chris Harper\\.nuget\\packages\\",
-      "outputPath": "d:\\Documents\\C#Projects\\MTGRares\\obj\\",
+      "outputPath": "D:\\Documents\\C#Projects\\MTGRares\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Chris Harper\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Chris Harper\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -5325,6 +5331,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "CsvHelper": {
             "target": "Package",
@@ -5358,7 +5365,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
