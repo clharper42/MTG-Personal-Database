@@ -23,9 +23,9 @@ Non-english cards do not currently work
 
 [Example of price feature](https://streamable.com/h4kjka)
 
-[Example of keyword features](https://streamable.com/is4wcl)
+[Example of keyword features](https://streamable.com/crg1at)
 
-[Example of remove card feature](https://streamable.com/cip868)
+[Example of remove card feature](https://streamable.com/4iozq3)
 
 [Example of list features](https://streamable.com/018cpa)
 
