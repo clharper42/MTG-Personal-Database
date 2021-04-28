@@ -1,0 +1,11 @@
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\MTGRares.exe
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\MTGRares.dll
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\MTGRares.deps.json
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\MTGRares.runtimeconfig.json
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\MTGRares.pdb
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\CsvHelper.dll
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\Json.Net.dll
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\LumenWorks.Framework.IO.dll
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\System.Net.Http.Formatting.dll
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\Newtonsoft.Json.dll
+D:\Documents\C#Projects\MTGRares\bin\Release\netcoreapp3.1\publish\Newtonsoft.Json.Bson.dll

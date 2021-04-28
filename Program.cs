@@ -110,6 +110,14 @@ namespace MTGRares
                 }
             }
 
+            if(allcards.Count != carddb.Count)
+            {
+                Console.WriteLine("Check CardDB/TCGplayer For Possible Invalid Card(s)");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+
+
             allcards.Sort((x, y) => {
                 if(x.Name.CompareTo(y.Name) != 0)
                 {
