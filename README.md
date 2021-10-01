@@ -1,5 +1,5 @@
 # MTG-Personal-Database
-[UI Verion](https://github.com/clharper42/MTGdb)
+[UI Version](https://github.com/clharper42/MTGdb)
 
 This program is a way to create and interact with your personal Magic The Gathering card collection.
 
