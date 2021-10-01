@@ -1,4 +1,6 @@
 # MTG-Personal-Database
+[UI Verion](https://github.com/clharper42/MTGdb)
+
 This program is a way to create and interact with your personal Magic The Gathering card collection.
 
 First you scan cards using the TCGPlayer app as a way to speed up the process of entering cards into the database. You take the csv file that the app gives you and pass that in as an argument into the program.
@@ -14,6 +16,8 @@ Set - Collector Number - Printing(Normal/Foil) is the unique identifier for a ca
 Some cards may have issues being entered due to TCGPlayer and Scryfall having different ways of identifying cards. Fixing when I notice a discrepancy
 
 Non-english cards do not currently work
+
+Videos may not play
 
 [Example of features as of first commit](https://streamable.com/60due7)
 
